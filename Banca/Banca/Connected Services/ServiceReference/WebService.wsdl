@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="AdugareUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sold" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="iban" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nume" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="prenume" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cnp" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="telefon" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="data_creare" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="id_valuta" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdugareUserResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ModificaUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id_user" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="nume" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="prenume" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="telefon" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificaUserResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CautareUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="iban" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nume" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="prenume" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cnp" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CautareUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CautareUserResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdugareValuta">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cod_valutar" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="denumire" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="simbol" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tara" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="curs_de_schimb" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdugareValutaResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CautareValuta">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cod_valutar" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="denumire" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="simbol" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tara" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CautareValutaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CautareValutaResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AdugareUserSoapIn">
+    <wsdl:part name="parameters" element="tns:AdugareUser" />
+  </wsdl:message>
+  <wsdl:message name="AdugareUserSoapOut">
+    <wsdl:part name="parameters" element="tns:AdugareUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificaUserSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificaUser" />
+  </wsdl:message>
+  <wsdl:message name="ModificaUserSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificaUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="CautareUserSoapIn">
+    <wsdl:part name="parameters" element="tns:CautareUser" />
+  </wsdl:message>
+  <wsdl:message name="CautareUserSoapOut">
+    <wsdl:part name="parameters" element="tns:CautareUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="AdugareValutaSoapIn">
+    <wsdl:part name="parameters" element="tns:AdugareValuta" />
+  </wsdl:message>
+  <wsdl:message name="AdugareValutaSoapOut">
+    <wsdl:part name="parameters" element="tns:AdugareValutaResponse" />
+  </wsdl:message>
+  <wsdl:message name="CautareValutaSoapIn">
+    <wsdl:part name="parameters" element="tns:CautareValuta" />
+  </wsdl:message>
+  <wsdl:message name="CautareValutaSoapOut">
+    <wsdl:part name="parameters" element="tns:CautareValutaResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WebServiceSoap">
+    <wsdl:operation name="AdugareUser">
+      <wsdl:input message="tns:AdugareUserSoapIn" />
+      <wsdl:output message="tns:AdugareUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificaUser">
+      <wsdl:input message="tns:ModificaUserSoapIn" />
+      <wsdl:output message="tns:ModificaUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CautareUser">
+      <wsdl:input message="tns:CautareUserSoapIn" />
+      <wsdl:output message="tns:CautareUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AdugareValuta">
+      <wsdl:input message="tns:AdugareValutaSoapIn" />
+      <wsdl:output message="tns:AdugareValutaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CautareValuta">
+      <wsdl:input message="tns:CautareValutaSoapIn" />
+      <wsdl:output message="tns:CautareValutaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebServiceSoap" type="tns:WebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AdugareUser">
+      <soap:operation soapAction="http://tempuri.org/AdugareUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaUser">
+      <soap:operation soapAction="http://tempuri.org/ModificaUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CautareUser">
+      <soap:operation soapAction="http://tempuri.org/CautareUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdugareValuta">
+      <soap:operation soapAction="http://tempuri.org/AdugareValuta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CautareValuta">
+      <soap:operation soapAction="http://tempuri.org/CautareValuta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebServiceSoap12" type="tns:WebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AdugareUser">
+      <soap12:operation soapAction="http://tempuri.org/AdugareUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificaUser">
+      <soap12:operation soapAction="http://tempuri.org/ModificaUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CautareUser">
+      <soap12:operation soapAction="http://tempuri.org/CautareUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdugareValuta">
+      <soap12:operation soapAction="http://tempuri.org/AdugareValuta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CautareValuta">
+      <soap12:operation soapAction="http://tempuri.org/CautareValuta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebService">
+    <wsdl:port name="WebServiceSoap" binding="tns:WebServiceSoap">
+      <soap:address location="http://localhost:60742/WebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebServiceSoap12" binding="tns:WebServiceSoap12">
+      <soap12:address location="http://localhost:60742/WebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
