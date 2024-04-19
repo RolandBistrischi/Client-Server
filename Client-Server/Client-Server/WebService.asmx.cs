@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Web.Services;
 
@@ -19,6 +20,9 @@ namespace Client_Server
         public void AdugareUser( decimal sold, string iban, string nume, string prenume,
         string cnp, string telefon, DateTime data_creare, int id_valuta )
         {
+            if (id_valuta < 0)
+                return;
+
             string query = @"INSERT INTO Useri (sold, iban, nume, prenume, cnp, telefon, data_creare, id_valuta)
                     VALUES (@Sold, @IBAN, @Nume, @Prenume, @CNP, @Telefon, @DataCreare, @IDValuta)";
             try
@@ -30,11 +34,11 @@ namespace Client_Server
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@Sold", sold);
-                        command.Parameters.AddWithValue("@IBAN", iban);
-                        command.Parameters.AddWithValue("@Nume", nume);
-                        command.Parameters.AddWithValue("@Prenume", prenume);
-                        command.Parameters.AddWithValue("@CNP", cnp);
-                        command.Parameters.AddWithValue("@Telefon", telefon);
+                        command.Parameters.AddWithValue("@IBAN", iban.Trim());
+                        command.Parameters.AddWithValue("@Nume", nume.Trim());
+                        command.Parameters.AddWithValue("@Prenume", prenume.Trim());
+                        command.Parameters.AddWithValue("@CNP", cnp.Trim());
+                        command.Parameters.AddWithValue("@Telefon", telefon.Trim());
                         command.Parameters.AddWithValue("@DataCreare", data_creare);
                         command.Parameters.AddWithValue("@IDValuta", id_valuta);
 
@@ -60,10 +64,10 @@ namespace Client_Server
         [WebMethod]
         public void ModificaUser( int id_user, string nume, string prenume, string telefon )
         {
-            string query = @"UPDATE User 
+            string query = @"UPDATE Useri 
                      SET nume = @Nume, 
                          prenume = @Prenume, 
-                         telefon = @Telefon, 
+                         telefon = @Telefon 
                      WHERE id_user = @IDUser";
 
             try
@@ -73,9 +77,9 @@ namespace Client_Server
                     connection.Open();
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@Nume", nume);
-                        command.Parameters.AddWithValue("@Prenume", prenume);
-                        command.Parameters.AddWithValue("@Telefon", telefon);
+                        command.Parameters.AddWithValue("@Nume", nume.Trim());
+                        command.Parameters.AddWithValue("@Prenume", prenume.Trim());
+                        command.Parameters.AddWithValue("@Telefon", telefon.Trim());
                         command.Parameters.AddWithValue("@IDUser", id_user);
 
                         int rowsAffected = command.ExecuteNonQuery();
@@ -98,13 +102,9 @@ namespace Client_Server
         }
 
         [WebMethod]
-        public int CautareUser( string iban, string nume, string prenume, string cnp )
+        public Utilizator CautareUser( string cnp )
         {
-            string query = @"SELECT id_user FROM User 
-                     WHERE iban = @IBAN 
-                     OR nume = @Nume 
-                     OR prenume = @Prenume 
-                     OR cnp = @CNP";
+            string query = @"SELECT id_user, nume, prenume, telefon, cnp FROM Useri WHERE cnp = @CNP";
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -113,32 +113,36 @@ namespace Client_Server
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@IBAN", iban);
-                        command.Parameters.AddWithValue("@Nume", nume);
-                        command.Parameters.AddWithValue("@Prenume", prenume);
-                        command.Parameters.AddWithValue("@CNP", cnp);
+                        command.Parameters.AddWithValue("@CNP", cnp.Trim());
+                        SqlDataReader reader = command.ExecuteReader();
 
-                        object result = command.ExecuteScalar();
-
-                        if (result != null)
+                        if (reader.Read())
                         {
-                            int idUser = Convert.ToInt32(result);
-                            Console.WriteLine("Utilizatorul a fost găsit în baza de date. ID-ul utilizatorului: " + idUser);
-                            return idUser;
+                            Utilizator utilizator = new Utilizator
+                            {
+                                IdUser = Convert.ToInt32(reader ["id_user"]),
+                                Nume = reader ["nume"].ToString(),
+                                Prenume = reader ["prenume"].ToString(),
+                                Telefon = reader ["telefon"].ToString(),
+                                Cnp = reader ["cnp"].ToString()
+                            };
+
+                            // Returnează obiectul Utilizator
+                            return utilizator;
                         }
                         else
                         {
                             Console.WriteLine("Nu s-au găsit înregistrări pentru utilizatorul căutat.");
                         }
-                        return -1;
                     }
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine("A apărut o excepție: " + ex.Message);
-                return -1;
             }
+
+            return null;
         }
 
         [WebMethod]
@@ -155,10 +159,10 @@ namespace Client_Server
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@CodValutar", cod_valutar);
-                        command.Parameters.AddWithValue("@Denumire", denumire);
-                        command.Parameters.AddWithValue("@Simbol", simbol);
-                        command.Parameters.AddWithValue("@Tara", tara);
+                        command.Parameters.AddWithValue("@CodValutar", cod_valutar.Trim());
+                        command.Parameters.AddWithValue("@Denumire", denumire.Trim());
+                        command.Parameters.AddWithValue("@Simbol", simbol.Trim());
+                        command.Parameters.AddWithValue("@Tara", tara.Trim());
                         command.Parameters.AddWithValue("@CursDeSchimb", curs_de_schimb);
 
                         int rowsAffected = command.ExecuteNonQuery();
@@ -182,13 +186,11 @@ namespace Client_Server
 
 
         [WebMethod]
-        public int CautareValuta( string cod_valutar, string denumire, string simbol, string tara )
+        public int CautareValuta( string denumire, string simbol )
         {
-            string query = @"SELECT id_valuta FROM Valute 
-                     WHERE cod_valutar = @CodValutar 
-                     OR denumire = @Denumire 
-                     OR simbol = @Simbol 
-                     OR tara = @Tara";
+            string query = @"SELECT id_valuta FROM Valute  WHERE 
+                     denumire = @Denumire 
+                     AND simbol = @Simbol ";
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -197,10 +199,8 @@ namespace Client_Server
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@CodValutar", cod_valutar);
-                        command.Parameters.AddWithValue("@Denumire", denumire);
-                        command.Parameters.AddWithValue("@Simbol", simbol);
-                        command.Parameters.AddWithValue("@Tara", tara);
+                        command.Parameters.AddWithValue("@Denumire", denumire.Trim());
+                        command.Parameters.AddWithValue("@Simbol", simbol.Trim());
 
                         object result = command.ExecuteScalar();
 
@@ -223,6 +223,36 @@ namespace Client_Server
                 Console.WriteLine("A apărut o excepție: " + ex.Message);
                 return -1;
             }
+        }
+
+        [WebMethod]
+        public List<string> ToateValutele()
+        {
+            List<string> valute = new List<string>();
+            string query = @"SELECT denumire, simbol FROM Valute";
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            string valutaInfo = reader ["Denumire"] + " ( " + reader ["Simbol"] + " )";
+
+                            valute.Add(valutaInfo);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("A apărut o eroare la extragerea valutelor: " + ex.Message);
+            }
+
+            return valute;
         }
 
     }

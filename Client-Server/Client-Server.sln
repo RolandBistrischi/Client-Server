@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client-Server", "Client-Server\Client-Server.csproj", "{35903DB1-4E28-4985-83EC-0F2FA06E9730}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banca", "..\Banca\Banca\Banca.csproj", "{A0AF2FA2-0534-43F3-A11D-9508321085E2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{35903DB1-4E28-4985-83EC-0F2FA06E9730} = {35903DB1-4E28-4985-83EC-0F2FA06E9730}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

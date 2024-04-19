@@ -35,9 +35,6 @@
       <s:element name="CautareUser">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="iban" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="nume" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="prenume" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="cnp" type="s:string" />
           </s:sequence>
         </s:complexType>
@@ -45,10 +42,19 @@
       <s:element name="CautareUserResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="CautareUserResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CautareUserResult" type="tns:Utilizator" />
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:complexType name="Utilizator">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdUser" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nume" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Prenume" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Telefon" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cnp" type="s:string" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="AdugareValuta">
         <s:complexType>
           <s:sequence>
@@ -66,10 +72,8 @@
       <s:element name="CautareValuta">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="cod_valutar" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="denumire" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="simbol" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="tara" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -80,6 +84,21 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="ToateValutele">
+        <s:complexType />
+      </s:element>
+      <s:element name="ToateValuteleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ToateValuteleResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="AdugareUserSoapIn">
@@ -112,6 +131,12 @@
   <wsdl:message name="CautareValutaSoapOut">
     <wsdl:part name="parameters" element="tns:CautareValutaResponse" />
   </wsdl:message>
+  <wsdl:message name="ToateValuteleSoapIn">
+    <wsdl:part name="parameters" element="tns:ToateValutele" />
+  </wsdl:message>
+  <wsdl:message name="ToateValuteleSoapOut">
+    <wsdl:part name="parameters" element="tns:ToateValuteleResponse" />
+  </wsdl:message>
   <wsdl:portType name="WebServiceSoap">
     <wsdl:operation name="AdugareUser">
       <wsdl:input message="tns:AdugareUserSoapIn" />
@@ -132,6 +157,10 @@
     <wsdl:operation name="CautareValuta">
       <wsdl:input message="tns:CautareValutaSoapIn" />
       <wsdl:output message="tns:CautareValutaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ToateValutele">
+      <wsdl:input message="tns:ToateValuteleSoapIn" />
+      <wsdl:output message="tns:ToateValuteleSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebServiceSoap" type="tns:WebServiceSoap">
@@ -181,6 +210,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ToateValutele">
+      <soap:operation soapAction="http://tempuri.org/ToateValutele" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebServiceSoap12" type="tns:WebServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -222,6 +260,15 @@
     </wsdl:operation>
     <wsdl:operation name="CautareValuta">
       <soap12:operation soapAction="http://tempuri.org/CautareValuta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ToateValutele">
+      <soap12:operation soapAction="http://tempuri.org/ToateValutele" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
