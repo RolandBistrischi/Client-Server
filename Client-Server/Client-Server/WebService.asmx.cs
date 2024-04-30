@@ -16,11 +16,55 @@ namespace Client_Server
     public class WebService : System.Web.Services.WebService
     {
         private readonly string connectionString = "Data Source=DESKTOP-6ICN792;Initial Catalog = BancaDatabase; Integrated Security = True";
+        /* [WebMethod]
+         public void AdugareUser( decimal sold, string iban, string nume, string prenume,
+         string cnp, string telefon, DateTime data_creare, int id_valuta )
+         {
+             if (id_valuta < 0)
+                 return;
+
+             string query = @"INSERT INTO Useri (sold, iban, nume, prenume, cnp, telefon, data_creare, id_valuta)
+                     VALUES (@Sold, @IBAN, @Nume, @Prenume, @CNP, @Telefon, @DataCreare, @IDValuta)";
+             try
+             {
+                 using (SqlConnection connection = new SqlConnection(connectionString))
+                 {
+                     connection.Open();
+
+                     using (SqlCommand command = new SqlCommand(query, connection))
+                     {
+                         command.Parameters.AddWithValue("@Sold", sold);
+                         command.Parameters.AddWithValue("@IBAN", iban.Trim());
+                         command.Parameters.AddWithValue("@Nume", nume.Trim());
+                         command.Parameters.AddWithValue("@Prenume", prenume.Trim());
+                         command.Parameters.AddWithValue("@CNP", cnp.Trim());
+                         command.Parameters.AddWithValue("@Telefon", telefon.Trim());
+                         command.Parameters.AddWithValue("@DataCreare", data_creare);
+                         command.Parameters.AddWithValue("@IDValuta", id_valuta);
+
+                         int rowsAffected = command.ExecuteNonQuery();
+
+                         if (rowsAffected > 0)
+                         {
+                             Console.WriteLine("Utilizatorul a fost adăugat în baza de date.");
+                         }
+                         else
+                         {
+                             Console.WriteLine("Nu s-a putut adăuga utilizatorul în baza de date.");
+                         }
+                     }
+                 }
+             }
+             catch (Exception ex)
+             {
+                 Console.WriteLine("A apărut o excepție: " + ex.Message);
+             }
+         }
+         */
         [WebMethod]
-        public void AdugareUser( decimal sold, string iban, string nume, string prenume,
-        string cnp, string telefon, DateTime data_creare, int id_valuta )
+        public void AdugareUser( Utilizator utilizator )
         {
-            if (id_valuta < 0)
+            if (utilizator.IdValuta < 0)
                 return;
 
             string query = @"INSERT INTO Useri (sold, iban, nume, prenume, cnp, telefon, data_creare, id_valuta)
@@ -33,14 +77,14 @@ namespace Client_Server
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@Sold", sold);
-                        command.Parameters.AddWithValue("@IBAN", iban.Trim());
-                        command.Parameters.AddWithValue("@Nume", nume.Trim());
-                        command.Parameters.AddWithValue("@Prenume", prenume.Trim());
-                        command.Parameters.AddWithValue("@CNP", cnp.Trim());
-                        command.Parameters.AddWithValue("@Telefon", telefon.Trim());
-                        command.Parameters.AddWithValue("@DataCreare", data_creare);
-                        command.Parameters.AddWithValue("@IDValuta", id_valuta);
+                        command.Parameters.AddWithValue("@Sold", utilizator.Sold);
+                        command.Parameters.AddWithValue("@IBAN", utilizator.Iban.Trim());
+                        command.Parameters.AddWithValue("@Nume", utilizator.Nume.Trim());
+                        command.Parameters.AddWithValue("@Prenume", utilizator.Prenume.Trim());
+                        command.Parameters.AddWithValue("@CNP", utilizator.Cnp.Trim());
+                        command.Parameters.AddWithValue("@Telefon", utilizator.Telefon.Trim());
+                        command.Parameters.AddWithValue("@DataCreare", utilizator.DataCreare);
+                        command.Parameters.AddWithValue("@IDValuta", utilizator.IdValuta);
 
                         int rowsAffected = command.ExecuteNonQuery();
 
@@ -60,6 +104,8 @@ namespace Client_Server
                 Console.WriteLine("A apărut o excepție: " + ex.Message);
             }
         }
+
+
 
         [WebMethod]
         public void ModificaUser( int id_user, string nume, string prenume, string telefon )
@@ -118,7 +164,7 @@ namespace Client_Server
 
                         if (reader.Read())
                         {
-                            Utilizator utilizator = new Utilizator
+                            Utilizator utilizator = new Utilizator()
                             {
                                 IdUser = Convert.ToInt32(reader ["id_user"]),
                                 Nume = reader ["nume"].ToString(),
@@ -145,9 +191,47 @@ namespace Client_Server
             return null;
         }
 
+        /*        [WebMethod]
+                public void AdugareValuta( string cod_valutar, string denumire, string simbol,
+                    string tara, double curs_de_schimb )
+                {
+                    string query = @"INSERT INTO Valute (cod_valutar, denumire, simbol, tara, curs_de_schimb)
+                             VALUES (@CodValutar, @Denumire, @Simbol, @Tara, @CursDeSchimb)";
+                    try
+                    {
+                        using (SqlConnection connection = new SqlConnection(connectionString))
+                        {
+                            connection.Open();
+
+                            using (SqlCommand command = new SqlCommand(query, connection))
+                            {
+                                command.Parameters.AddWithValue("@CodValutar", cod_valutar.Trim());
+                                command.Parameters.AddWithValue("@Denumire", denumire.Trim());
+                                command.Parameters.AddWithValue("@Simbol", simbol.Trim());
+                                command.Parameters.AddWithValue("@Tara", tara.Trim());
+                                command.Parameters.AddWithValue("@CursDeSchimb", curs_de_schimb);
+
+                                int rowsAffected = command.ExecuteNonQuery();
+
+                                if (rowsAffected > 0)
+                                {
+                                    Console.WriteLine("Valuta a fost adăugată în baza de date.");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Nu s-a putut adăuga valuta în baza de date.");
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("A apărut o excepție: " + ex.Message);
+                    }
+                }
+                */
         [WebMethod]
-        public void AdugareValuta( string cod_valutar, string denumire, string simbol,
-            string tara, double curs_de_schimb )
+        public void AdugareValuta( Valute valuta )
         {
             string query = @"INSERT INTO Valute (cod_valutar, denumire, simbol, tara, curs_de_schimb)
                      VALUES (@CodValutar, @Denumire, @Simbol, @Tara, @CursDeSchimb)";
@@ -159,11 +243,11 @@ namespace Client_Server
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@CodValutar", cod_valutar.Trim());
-                        command.Parameters.AddWithValue("@Denumire", denumire.Trim());
-                        command.Parameters.AddWithValue("@Simbol", simbol.Trim());
-                        command.Parameters.AddWithValue("@Tara", tara.Trim());
-                        command.Parameters.AddWithValue("@CursDeSchimb", curs_de_schimb);
+                        command.Parameters.AddWithValue("@CodValutar", valuta.CodValutar.Trim());
+                        command.Parameters.AddWithValue("@Denumire", valuta.Denumire.Trim());
+                        command.Parameters.AddWithValue("@Simbol", valuta.Simbol.Trim());
+                        command.Parameters.AddWithValue("@Tara", valuta.Tara.Trim());
+                        command.Parameters.AddWithValue("@CursDeSchimb", valuta.CursdeSchimb);
 
                         int rowsAffected = command.ExecuteNonQuery();
 
@@ -183,6 +267,8 @@ namespace Client_Server
                 Console.WriteLine("A apărut o excepție: " + ex.Message);
             }
         }
+
+
 
 
         [WebMethod]
@@ -224,6 +310,7 @@ namespace Client_Server
                 return -1;
             }
         }
+
 
         [WebMethod]
         public List<string> ToateValutele()

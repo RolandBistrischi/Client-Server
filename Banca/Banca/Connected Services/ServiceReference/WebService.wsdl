@@ -5,17 +5,23 @@
       <s:element name="AdugareUser">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="sold" type="s:decimal" />
-            <s:element minOccurs="0" maxOccurs="1" name="iban" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="nume" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="prenume" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="cnp" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="telefon" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="data_creare" type="s:dateTime" />
-            <s:element minOccurs="1" maxOccurs="1" name="id_valuta" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="utilizator" type="tns:Utilizator" />
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:complexType name="Utilizator">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdUser" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nume" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Prenume" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Telefon" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cnp" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Sold" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Iban" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DataCreare" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdValuta" type="s:int" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="AdugareUserResponse">
         <s:complexType />
       </s:element>
@@ -46,26 +52,23 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="Utilizator">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="IdUser" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="Nume" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Prenume" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Telefon" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Cnp" type="s:string" />
-        </s:sequence>
-      </s:complexType>
       <s:element name="AdugareValuta">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="cod_valutar" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="denumire" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="simbol" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="tara" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="curs_de_schimb" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="valuta" type="tns:Valute" />
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:complexType name="Valute">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdValuta" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodValutar" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Denumire" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Simbol" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tara" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CursdeSchimb" type="s:double" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="AdugareValutaResponse">
         <s:complexType />
       </s:element>

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panelUser = new System.Windows.Forms.Panel();
+            this.buttonCautadupaCNP = new System.Windows.Forms.Button();
             this.textBoxSold = new System.Windows.Forms.TextBox();
             this.labelSold = new System.Windows.Forms.Label();
             this.buttonAdaugaUser = new System.Windows.Forms.Button();
@@ -44,6 +45,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.userToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.valuteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modificaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelValute = new System.Windows.Forms.Panel();
             this.buttonAdaugaValuta = new System.Windows.Forms.Button();
             this.textBoxDenumire = new System.Windows.Forms.TextBox();
@@ -56,8 +58,7 @@
             this.labelTara = new System.Windows.Forms.Label();
             this.textBoxCod = new System.Windows.Forms.TextBox();
             this.labelCod = new System.Windows.Forms.Label();
-            this.modificaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.buttonCautadupaCNP = new System.Windows.Forms.Button();
+            this.tranzactieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelUser.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.panelValute.SuspendLayout();
@@ -82,6 +83,16 @@
             this.panelUser.Name = "panelUser";
             this.panelUser.Size = new System.Drawing.Size(559, 623);
             this.panelUser.TabIndex = 0;
+            // 
+            // buttonCautadupaCNP
+            // 
+            this.buttonCautadupaCNP.Location = new System.Drawing.Point(337, 480);
+            this.buttonCautadupaCNP.Name = "buttonCautadupaCNP";
+            this.buttonCautadupaCNP.Size = new System.Drawing.Size(152, 85);
+            this.buttonCautadupaCNP.TabIndex = 12;
+            this.buttonCautadupaCNP.Text = "Cauta User";
+            this.buttonCautadupaCNP.UseVisualStyleBackColor = true;
+            this.buttonCautadupaCNP.Click += new System.EventHandler(this.buttonCautadupaCNP_Click);
             // 
             // textBoxSold
             // 
@@ -188,7 +199,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.userToolStripMenuItem,
             this.valuteToolStripMenuItem,
-            this.modificaToolStripMenuItem});
+            this.modificaToolStripMenuItem,
+            this.tranzactieToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1099, 28);
@@ -208,6 +220,13 @@
             this.valuteToolStripMenuItem.Size = new System.Drawing.Size(62, 24);
             this.valuteToolStripMenuItem.Text = "Valute";
             this.valuteToolStripMenuItem.Click += new System.EventHandler(this.valuteToolStripMenuItem_Click);
+            // 
+            // modificaToolStripMenuItem
+            // 
+            this.modificaToolStripMenuItem.Name = "modificaToolStripMenuItem";
+            this.modificaToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
+            this.modificaToolStripMenuItem.Text = "Modifica";
+            this.modificaToolStripMenuItem.Click += new System.EventHandler(this.modificaToolStripMenuItem_Click);
             // 
             // panelValute
             // 
@@ -317,22 +336,11 @@
             this.labelCod.TabIndex = 8;
             this.labelCod.Text = "Cod Valutar";
             // 
-            // modificaToolStripMenuItem
+            // tranzactieToolStripMenuItem
             // 
-            this.modificaToolStripMenuItem.Name = "modificaToolStripMenuItem";
-            this.modificaToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
-            this.modificaToolStripMenuItem.Text = "Modifica";
-            this.modificaToolStripMenuItem.Click += new System.EventHandler(this.modificaToolStripMenuItem_Click);
-            // 
-            // buttonCautadupaCNP
-            // 
-            this.buttonCautadupaCNP.Location = new System.Drawing.Point(337, 480);
-            this.buttonCautadupaCNP.Name = "buttonCautadupaCNP";
-            this.buttonCautadupaCNP.Size = new System.Drawing.Size(152, 85);
-            this.buttonCautadupaCNP.TabIndex = 12;
-            this.buttonCautadupaCNP.Text = "Cauta User";
-            this.buttonCautadupaCNP.UseVisualStyleBackColor = true;
-            this.buttonCautadupaCNP.Click += new System.EventHandler(this.buttonCautadupaCNP_Click);
+            this.tranzactieToolStripMenuItem.Name = "tranzactieToolStripMenuItem";
+            this.tranzactieToolStripMenuItem.Size = new System.Drawing.Size(88, 24);
+            this.tranzactieToolStripMenuItem.Text = "Tranzactie";
             // 
             // Form1
             // 
@@ -389,6 +397,7 @@
         private System.Windows.Forms.Label labelSold;
         private System.Windows.Forms.ToolStripMenuItem modificaToolStripMenuItem;
         private System.Windows.Forms.Button buttonCautadupaCNP;
+        private System.Windows.Forms.ToolStripMenuItem tranzactieToolStripMenuItem;
     }
 }
 
