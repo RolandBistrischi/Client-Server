@@ -36,6 +36,15 @@ namespace Banca.ServiceReference {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string CnpField;
         
+        private decimal SoldField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IbanField;
+        
+        private System.DateTime DataCreareField;
+        
+        private int IdValutaField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -111,6 +120,181 @@ namespace Banca.ServiceReference {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
+        public decimal Sold {
+            get {
+                return this.SoldField;
+            }
+            set {
+                if ((this.SoldField.Equals(value) != true)) {
+                    this.SoldField = value;
+                    this.RaisePropertyChanged("Sold");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=6)]
+        public string Iban {
+            get {
+                return this.IbanField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IbanField, value) != true)) {
+                    this.IbanField = value;
+                    this.RaisePropertyChanged("Iban");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=7)]
+        public System.DateTime DataCreare {
+            get {
+                return this.DataCreareField;
+            }
+            set {
+                if ((this.DataCreareField.Equals(value) != true)) {
+                    this.DataCreareField = value;
+                    this.RaisePropertyChanged("DataCreare");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=8)]
+        public int IdValuta {
+            get {
+                return this.IdValutaField;
+            }
+            set {
+                if ((this.IdValutaField.Equals(value) != true)) {
+                    this.IdValutaField = value;
+                    this.RaisePropertyChanged("IdValuta");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Valute", Namespace="http://tempuri.org/")]
+    [System.SerializableAttribute()]
+    public partial class Valute : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private int IdValutaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CodValutarField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DenumireField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SimbolField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TaraField;
+        
+        private double CursdeSchimbField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public int IdValuta {
+            get {
+                return this.IdValutaField;
+            }
+            set {
+                if ((this.IdValutaField.Equals(value) != true)) {
+                    this.IdValutaField = value;
+                    this.RaisePropertyChanged("IdValuta");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string CodValutar {
+            get {
+                return this.CodValutarField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CodValutarField, value) != true)) {
+                    this.CodValutarField = value;
+                    this.RaisePropertyChanged("CodValutar");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        public string Denumire {
+            get {
+                return this.DenumireField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DenumireField, value) != true)) {
+                    this.DenumireField = value;
+                    this.RaisePropertyChanged("Denumire");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        public string Simbol {
+            get {
+                return this.SimbolField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SimbolField, value) != true)) {
+                    this.SimbolField = value;
+                    this.RaisePropertyChanged("Simbol");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
+        public string Tara {
+            get {
+                return this.TaraField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TaraField, value) != true)) {
+                    this.TaraField = value;
+                    this.RaisePropertyChanged("Tara");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
+        public double CursdeSchimb {
+            get {
+                return this.CursdeSchimbField;
+            }
+            set {
+                if ((this.CursdeSchimbField.Equals(value) != true)) {
+                    this.CursdeSchimbField = value;
+                    this.RaisePropertyChanged("CursdeSchimb");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -132,7 +316,7 @@ namespace Banca.ServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference.WebServiceSoap")]
     public interface WebServiceSoap {
         
-        // CODEGEN: Generating message contract since element name iban from namespace http://tempuri.org/ is not marked nillable
+        // CODEGEN: Generating message contract since element name utilizator from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AdugareUser", ReplyAction="*")]
         Banca.ServiceReference.AdugareUserResponse AdugareUser(Banca.ServiceReference.AdugareUserRequest request);
         
@@ -153,7 +337,7 @@ namespace Banca.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CautareUser", ReplyAction="*")]
         System.Threading.Tasks.Task<Banca.ServiceReference.CautareUserResponse> CautareUserAsync(Banca.ServiceReference.CautareUserRequest request);
         
-        // CODEGEN: Generating message contract since element name cod_valutar from namespace http://tempuri.org/ is not marked nillable
+        // CODEGEN: Generating message contract since element name valuta from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AdugareValuta", ReplyAction="*")]
         Banca.ServiceReference.AdugareValutaResponse AdugareValuta(Banca.ServiceReference.AdugareValutaRequest request);
         
@@ -198,42 +382,14 @@ namespace Banca.ServiceReference {
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
     public partial class AdugareUserRequestBody {
         
-        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
-        public decimal sold;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
-        public string iban;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
-        public string nume;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
-        public string prenume;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
-        public string cnp;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=5)]
-        public string telefon;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Order=6)]
-        public System.DateTime data_creare;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Order=7)]
-        public int id_valuta;
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public Banca.ServiceReference.Utilizator utilizator;
         
         public AdugareUserRequestBody() {
         }
         
-        public AdugareUserRequestBody(decimal sold, string iban, string nume, string prenume, string cnp, string telefon, System.DateTime data_creare, int id_valuta) {
-            this.sold = sold;
-            this.iban = iban;
-            this.nume = nume;
-            this.prenume = prenume;
-            this.cnp = cnp;
-            this.telefon = telefon;
-            this.data_creare = data_creare;
-            this.id_valuta = id_valuta;
+        public AdugareUserRequestBody(Banca.ServiceReference.Utilizator utilizator) {
+            this.utilizator = utilizator;
         }
     }
     
@@ -429,29 +585,13 @@ namespace Banca.ServiceReference {
     public partial class AdugareValutaRequestBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string cod_valutar;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
-        public string denumire;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
-        public string simbol;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
-        public string tara;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Order=4)]
-        public double curs_de_schimb;
+        public Banca.ServiceReference.Valute valuta;
         
         public AdugareValutaRequestBody() {
         }
         
-        public AdugareValutaRequestBody(string cod_valutar, string denumire, string simbol, string tara, double curs_de_schimb) {
-            this.cod_valutar = cod_valutar;
-            this.denumire = denumire;
-            this.simbol = simbol;
-            this.tara = tara;
-            this.curs_de_schimb = curs_de_schimb;
+        public AdugareValutaRequestBody(Banca.ServiceReference.Valute valuta) {
+            this.valuta = valuta;
         }
     }
     
@@ -647,17 +787,10 @@ namespace Banca.ServiceReference {
             return base.Channel.AdugareUser(request);
         }
         
-        public void AdugareUser(decimal sold, string iban, string nume, string prenume, string cnp, string telefon, System.DateTime data_creare, int id_valuta) {
+        public void AdugareUser(Banca.ServiceReference.Utilizator utilizator) {
             Banca.ServiceReference.AdugareUserRequest inValue = new Banca.ServiceReference.AdugareUserRequest();
             inValue.Body = new Banca.ServiceReference.AdugareUserRequestBody();
-            inValue.Body.sold = sold;
-            inValue.Body.iban = iban;
-            inValue.Body.nume = nume;
-            inValue.Body.prenume = prenume;
-            inValue.Body.cnp = cnp;
-            inValue.Body.telefon = telefon;
-            inValue.Body.data_creare = data_creare;
-            inValue.Body.id_valuta = id_valuta;
+            inValue.Body.utilizator = utilizator;
             Banca.ServiceReference.AdugareUserResponse retVal = ((Banca.ServiceReference.WebServiceSoap)(this)).AdugareUser(inValue);
         }
         
@@ -666,17 +799,10 @@ namespace Banca.ServiceReference {
             return base.Channel.AdugareUserAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Banca.ServiceReference.AdugareUserResponse> AdugareUserAsync(decimal sold, string iban, string nume, string prenume, string cnp, string telefon, System.DateTime data_creare, int id_valuta) {
+        public System.Threading.Tasks.Task<Banca.ServiceReference.AdugareUserResponse> AdugareUserAsync(Banca.ServiceReference.Utilizator utilizator) {
             Banca.ServiceReference.AdugareUserRequest inValue = new Banca.ServiceReference.AdugareUserRequest();
             inValue.Body = new Banca.ServiceReference.AdugareUserRequestBody();
-            inValue.Body.sold = sold;
-            inValue.Body.iban = iban;
-            inValue.Body.nume = nume;
-            inValue.Body.prenume = prenume;
-            inValue.Body.cnp = cnp;
-            inValue.Body.telefon = telefon;
-            inValue.Body.data_creare = data_creare;
-            inValue.Body.id_valuta = id_valuta;
+            inValue.Body.utilizator = utilizator;
             return ((Banca.ServiceReference.WebServiceSoap)(this)).AdugareUserAsync(inValue);
         }
         
@@ -740,14 +866,10 @@ namespace Banca.ServiceReference {
             return base.Channel.AdugareValuta(request);
         }
         
-        public void AdugareValuta(string cod_valutar, string denumire, string simbol, string tara, double curs_de_schimb) {
+        public void AdugareValuta(Banca.ServiceReference.Valute valuta) {
             Banca.ServiceReference.AdugareValutaRequest inValue = new Banca.ServiceReference.AdugareValutaRequest();
             inValue.Body = new Banca.ServiceReference.AdugareValutaRequestBody();
-            inValue.Body.cod_valutar = cod_valutar;
-            inValue.Body.denumire = denumire;
-            inValue.Body.simbol = simbol;
-            inValue.Body.tara = tara;
-            inValue.Body.curs_de_schimb = curs_de_schimb;
+            inValue.Body.valuta = valuta;
             Banca.ServiceReference.AdugareValutaResponse retVal = ((Banca.ServiceReference.WebServiceSoap)(this)).AdugareValuta(inValue);
         }
         
@@ -756,14 +878,10 @@ namespace Banca.ServiceReference {
             return base.Channel.AdugareValutaAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Banca.ServiceReference.AdugareValutaResponse> AdugareValutaAsync(string cod_valutar, string denumire, string simbol, string tara, double curs_de_schimb) {
+        public System.Threading.Tasks.Task<Banca.ServiceReference.AdugareValutaResponse> AdugareValutaAsync(Banca.ServiceReference.Valute valuta) {
             Banca.ServiceReference.AdugareValutaRequest inValue = new Banca.ServiceReference.AdugareValutaRequest();
             inValue.Body = new Banca.ServiceReference.AdugareValutaRequestBody();
-            inValue.Body.cod_valutar = cod_valutar;
-            inValue.Body.denumire = denumire;
-            inValue.Body.simbol = simbol;
-            inValue.Body.tara = tara;
-            inValue.Body.curs_de_schimb = curs_de_schimb;
+            inValue.Body.valuta = valuta;
             return ((Banca.ServiceReference.WebServiceSoap)(this)).AdugareValutaAsync(inValue);
         }
         

@@ -7,7 +7,8 @@ namespace Banca
 {
     public partial class Form1 : Form
     {
-        ServiceReference.Utilizator util;
+        ServiceReference.Utilizator utilizator_curent;
+
 
         public Form1()
         {
@@ -98,15 +99,29 @@ namespace Banca
                 DateTime data = DateTime.Now;
                 ServiceReference.WebServiceSoapClient client = new ServiceReference.WebServiceSoapClient();
                 int id_valuta = client.CautareValuta(denumireValuta, simbolValuta);
-                client.AdugareUser(sold, RandomIban(), nume, prenume, cnp, tel, data, id_valuta);
+
+                ServiceReference.Utilizator utilizator = new ServiceReference.Utilizator
+                {
+                    IdUser = -1,
+                    Nume = nume,
+                    Prenume = prenume,
+                    Telefon = tel,
+                    Cnp = cnp,
+                    Sold = sold,
+                    Iban = RandomIban(),
+                    DataCreare = data,
+                    IdValuta = id_valuta
+                };
+                //client.AdugareUser(sold, RandomIban(), nume, prenume, cnp, tel, data, id_valuta);
+                client.AdugareUser(utilizator);
                 MessageBox.Show("Utilizator adaugat.");
                 return;
             }
 
-            if (buttonAdaugaUser.Text == "Modifica User" && util != null)
+            if (buttonAdaugaUser.Text == "Modifica User" && utilizator_curent != null)
             {
                 ServiceReference.WebServiceSoapClient client = new ServiceReference.WebServiceSoapClient();
-                client.ModificaUser(util.IdUser, nume, prenume, tel);
+                client.ModificaUser(utilizator_curent.IdUser, nume, prenume, tel);
                 MessageBox.Show("Utilizator modificat cu succes.");
             }
 
@@ -128,10 +143,54 @@ namespace Banca
                 return;
             }
             ServiceReference.WebServiceSoapClient client = new ServiceReference.WebServiceSoapClient();
-            client.AdugareValuta(cod_valuta, denumire, simbol, tara, curs_baza);
+            ServiceReference.Valute valute = new ServiceReference.Valute
+            {
+                IdValuta = -1,
+                CodValutar = cod_valuta,
+                Denumire = denumire,
+                Simbol = simbol,
+                Tara = tara,
+                CursdeSchimb = curs_baza
+            };
 
+            client.AdugareValuta(valute);
             MessageBox.Show("Valuta adaugata cu succes");
         }
+
+        private void buttonCautadupaCNP_Click( object sender, EventArgs e )
+        {
+            string cnp = textBoxCNP.Text.Trim();
+
+            if (string.IsNullOrEmpty(cnp))
+            {
+                MessageBox.Show("Pentru a putea cauta un utilizator trebuie introdus un cnp.");
+                return;
+            }
+
+            ServiceReference.WebServiceSoapClient client = new ServiceReference.WebServiceSoapClient();
+            utilizator_curent = client.CautareUser(cnp);
+
+            if (utilizator_curent == null)
+            {
+                MessageBox.Show("Nu s-a gasit utilizatorul");
+                return;
+            }
+
+            foreach (Control c in panelUser.Controls)
+            {
+                c.Show();
+            }
+            listBoxValute.Hide();
+            labelSold.Hide();
+            textBoxSold.Hide();
+
+            buttonAdaugaUser.Show();
+            textBoxNume.Text = utilizator_curent.Nume;
+            textBoxPrenume.Text = utilizator_curent.Prenume;
+            textBoxCNP.Text = utilizator_curent.Cnp;
+            textBoxTelefon.Text = utilizator_curent.Telefon;
+        }
+
 
 
 
@@ -162,38 +221,5 @@ namespace Banca
             return stringBuilder.ToString();
         }
 
-        private void buttonCautadupaCNP_Click( object sender, EventArgs e )
-        {
-            string cnp = textBoxCNP.Text.Trim();
-
-            if (string.IsNullOrEmpty(cnp))
-            {
-                MessageBox.Show("Pentru a putea cauta un utilizator trebuie introdus un cnp.");
-                return;
-            }
-
-            ServiceReference.WebServiceSoapClient client = new ServiceReference.WebServiceSoapClient();
-            util = client.CautareUser(cnp);
-
-            if (util == null)
-            {
-                MessageBox.Show("Nu s-a gasit utilizatorul");
-                return;
-            }
-
-            foreach (Control c in panelUser.Controls)
-            {
-                c.Show();
-            }
-            listBoxValute.Hide();
-            labelSold.Hide();
-            textBoxSold.Hide();
-
-            buttonAdaugaUser.Show();
-            textBoxNume.Text = util.Nume;
-            textBoxPrenume.Text = util.Prenume;
-            textBoxCNP.Text = util.Cnp;
-            textBoxTelefon.Text = util.Telefon;
-        }
     }
 }
