@@ -23,7 +23,11 @@
         </s:sequence>
       </s:complexType>
       <s:element name="AdugareUserResponse">
-        <s:complexType />
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AdugareUserResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="ModificaUser">
         <s:complexType>

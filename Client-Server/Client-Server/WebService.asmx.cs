@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Web.Services;
 
@@ -16,56 +17,14 @@ namespace Client_Server
     public class WebService : System.Web.Services.WebService
     {
         private readonly string connectionString = "Data Source=DESKTOP-6ICN792;Initial Catalog = BancaDatabase; Integrated Security = True";
-        /* [WebMethod]
-         public void AdugareUser( decimal sold, string iban, string nume, string prenume,
-         string cnp, string telefon, DateTime data_creare, int id_valuta )
-         {
-             if (id_valuta < 0)
-                 return;
 
-             string query = @"INSERT INTO Useri (sold, iban, nume, prenume, cnp, telefon, data_creare, id_valuta)
-                     VALUES (@Sold, @IBAN, @Nume, @Prenume, @CNP, @Telefon, @DataCreare, @IDValuta)";
-             try
-             {
-                 using (SqlConnection connection = new SqlConnection(connectionString))
-                 {
-                     connection.Open();
-
-                     using (SqlCommand command = new SqlCommand(query, connection))
-                     {
-                         command.Parameters.AddWithValue("@Sold", sold);
-                         command.Parameters.AddWithValue("@IBAN", iban.Trim());
-                         command.Parameters.AddWithValue("@Nume", nume.Trim());
-                         command.Parameters.AddWithValue("@Prenume", prenume.Trim());
-                         command.Parameters.AddWithValue("@CNP", cnp.Trim());
-                         command.Parameters.AddWithValue("@Telefon", telefon.Trim());
-                         command.Parameters.AddWithValue("@DataCreare", data_creare);
-                         command.Parameters.AddWithValue("@IDValuta", id_valuta);
-
-                         int rowsAffected = command.ExecuteNonQuery();
-
-                         if (rowsAffected > 0)
-                         {
-                             Console.WriteLine("Utilizatorul a fost adăugat în baza de date.");
-                         }
-                         else
-                         {
-                             Console.WriteLine("Nu s-a putut adăuga utilizatorul în baza de date.");
-                         }
-                     }
-                 }
-             }
-             catch (Exception ex)
-             {
-                 Console.WriteLine("A apărut o excepție: " + ex.Message);
-             }
-         }
-         */
         [WebMethod]
-        public void AdugareUser( Utilizator utilizator )
+        public bool AdugareUser( Utilizator utilizator )
         {
-            if (utilizator.IdValuta < 0)
-                return;
+            if (utilizator == null || utilizator.IdValuta < 0)
+                return false;
+            if (CautareUser(utilizator.Cnp) != null)
+                return false;
 
             string query = @"INSERT INTO Useri (sold, iban, nume, prenume, cnp, telefon, data_creare, id_valuta)
                     VALUES (@Sold, @IBAN, @Nume, @Prenume, @CNP, @Telefon, @DataCreare, @IDValuta)";
@@ -91,6 +50,7 @@ namespace Client_Server
                         if (rowsAffected > 0)
                         {
                             Console.WriteLine("Utilizatorul a fost adăugat în baza de date.");
+                            return true;
                         }
                         else
                         {
@@ -103,6 +63,7 @@ namespace Client_Server
             {
                 Console.WriteLine("A apărut o excepție: " + ex.Message);
             }
+            return false;
         }
 
 
@@ -150,7 +111,11 @@ namespace Client_Server
         [WebMethod]
         public Utilizator CautareUser( string cnp )
         {
-            string query = @"SELECT id_user, nume, prenume, telefon, cnp FROM Useri WHERE cnp = @CNP";
+            if (string.IsNullOrWhiteSpace(cnp))
+                return null;
+
+            Utilizator utilizator = null;
+            string query = @"SELECT id_user, nume, prenume, telefon, cnp, sold, iban, id_valuta FROM Useri WHERE cnp = @CNP";
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -160,25 +125,26 @@ namespace Client_Server
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@CNP", cnp.Trim());
-                        SqlDataReader reader = command.ExecuteReader();
-
-                        if (reader.Read())
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            Utilizator utilizator = new Utilizator()
+                            if (reader.Read())
                             {
-                                IdUser = Convert.ToInt32(reader ["id_user"]),
-                                Nume = reader ["nume"].ToString(),
-                                Prenume = reader ["prenume"].ToString(),
-                                Telefon = reader ["telefon"].ToString(),
-                                Cnp = reader ["cnp"].ToString()
-                            };
-
-                            // Returnează obiectul Utilizator
-                            return utilizator;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Nu s-au găsit înregistrări pentru utilizatorul căutat.");
+                                utilizator = new Utilizator()
+                                {
+                                    IdUser = Convert.ToInt32(reader ["id_user"]),
+                                    Nume = reader ["nume"].ToString(),
+                                    Prenume = reader ["prenume"].ToString(),
+                                    Telefon = reader ["telefon"].ToString(),
+                                    Cnp = reader ["cnp"].ToString(),
+                                    Iban = reader ["iban"].ToString(),
+                                    Sold = Convert.ToDecimal(reader ["sold"]),
+                                    IdValuta = Convert.ToInt32(reader ["id_valuta"]),
+                                };
+                            }
+                            else
+                            {
+                                Console.WriteLine("Nu s-au găsit înregistrări pentru utilizatorul căutat.");
+                            }
                         }
                     }
                 }
@@ -188,48 +154,9 @@ namespace Client_Server
                 Console.WriteLine("A apărut o excepție: " + ex.Message);
             }
 
-            return null;
+            return utilizator;
         }
 
-        /*        [WebMethod]
-                public void AdugareValuta( string cod_valutar, string denumire, string simbol,
-                    string tara, double curs_de_schimb )
-                {
-                    string query = @"INSERT INTO Valute (cod_valutar, denumire, simbol, tara, curs_de_schimb)
-                             VALUES (@CodValutar, @Denumire, @Simbol, @Tara, @CursDeSchimb)";
-                    try
-                    {
-                        using (SqlConnection connection = new SqlConnection(connectionString))
-                        {
-                            connection.Open();
-
-                            using (SqlCommand command = new SqlCommand(query, connection))
-                            {
-                                command.Parameters.AddWithValue("@CodValutar", cod_valutar.Trim());
-                                command.Parameters.AddWithValue("@Denumire", denumire.Trim());
-                                command.Parameters.AddWithValue("@Simbol", simbol.Trim());
-                                command.Parameters.AddWithValue("@Tara", tara.Trim());
-                                command.Parameters.AddWithValue("@CursDeSchimb", curs_de_schimb);
-
-                                int rowsAffected = command.ExecuteNonQuery();
-
-                                if (rowsAffected > 0)
-                                {
-                                    Console.WriteLine("Valuta a fost adăugată în baza de date.");
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Nu s-a putut adăuga valuta în baza de date.");
-                                }
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("A apărut o excepție: " + ex.Message);
-                    }
-                }
-                */
         [WebMethod]
         public void AdugareValuta( Valute valuta )
         {
@@ -342,5 +269,38 @@ namespace Client_Server
             return valute;
         }
 
+
+
+
+
+
+
+
+
+
+
+        private string GetConnectionString()
+        {
+            ConnectionStringSettingsCollection connectionStrings = ConfigurationManager.ConnectionStrings;
+            string computerName = Environment.MachineName;
+
+            foreach (ConnectionStringSettings connectionString in connectionStrings)
+            {
+                // Verifică dacă connection string-ul conține numele calculatorului
+                if (connectionString.ConnectionString.Contains(computerName))
+                {
+                    // Aici ai găsit connection string-ul potrivit pentru calculatorul curent
+                    //Console.WriteLine(connectionString.ConnectionString);
+                    return connectionString.ConnectionString;
+
+                    // Poți folosi connectionName și connectionValue aici în funcție de necesități
+                    // De exemplu, poți utiliza connectionValue pentru a crea o conexiune la baza de date
+                    // break; // Ieși din iterație după ce ai găsit connection string-ul potrivit
+                }
+            }
+
+            //  return ConfigurationManager.ConnectionStrings [connectionName].ConnectionString;
+            throw new Exception("Nu s-a găsit niciun connection string potrivit pentru acest calculator.");
+        }
     }
 }
