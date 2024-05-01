@@ -2,9 +2,11 @@ C:\partitia d\Visual Studio\visual studio proiecte\Client-Server\Banca\Banca\bin
 C:\partitia d\Visual Studio\visual studio proiecte\Client-Server\Banca\Banca\bin\Debug\Banca.exe
 C:\partitia d\Visual Studio\visual studio proiecte\Client-Server\Banca\Banca\bin\Debug\Banca.pdb
 C:\partitia d\Visual Studio\visual studio proiecte\Client-Server\Banca\Banca\obj\Debug\Banca.csprojAssemblyReference.cache
-C:\partitia d\Visual Studio\visual studio proiecte\Client-Server\Banca\Banca\obj\Debug\Banca.Form1.resources
 C:\partitia d\Visual Studio\visual studio proiecte\Client-Server\Banca\Banca\obj\Debug\Banca.Properties.Resources.resources
 C:\partitia d\Visual Studio\visual studio proiecte\Client-Server\Banca\Banca\obj\Debug\Banca.csproj.GenerateResource.cache
 C:\partitia d\Visual Studio\visual studio proiecte\Client-Server\Banca\Banca\obj\Debug\Banca.csproj.CoreCompileInputs.cache
 C:\partitia d\Visual Studio\visual studio proiecte\Client-Server\Banca\Banca\obj\Debug\Banca.exe
 C:\partitia d\Visual Studio\visual studio proiecte\Client-Server\Banca\Banca\obj\Debug\Banca.pdb
+C:\partitia d\Visual Studio\visual studio proiecte\Client-Server\Banca\Banca\obj\Debug\Banca.Tranzactie.resources
+C:\partitia d\Visual Studio\visual studio proiecte\Client-Server\Banca\Banca\obj\Debug\Banca.FormAutentificare.resources
+C:\partitia d\Visual Studio\visual studio proiecte\Client-Server\Banca\Banca\obj\Debug\Banca.FormUser.resources

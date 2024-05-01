@@ -53,16 +53,31 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="FormAutentificare.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FormAutentificare.Designer.cs">
+      <DependentUpon>FormAutentificare.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User.Designer.cs">
+      <DependentUpon>User.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Tranzactie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tranzactie.Designer.cs">
+      <DependentUpon>Tranzactie.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FormAutentificare.resx">
+      <DependentUpon>FormAutentificare.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User.resx">
+      <DependentUpon>User.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -73,6 +88,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Tranzactie.resx">
+      <DependentUpon>Tranzactie.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Connected Services\ServiceReference\Banca.ServiceReference.AdugareUserResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

@@ -413,10 +413,17 @@ namespace Banca.ServiceReference {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute()]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
     public partial class AdugareUserResponseBody {
         
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public bool AdugareUserResult;
+        
         public AdugareUserResponseBody() {
+        }
+        
+        public AdugareUserResponseBody(bool AdugareUserResult) {
+            this.AdugareUserResult = AdugareUserResult;
         }
     }
     
@@ -787,11 +794,12 @@ namespace Banca.ServiceReference {
             return base.Channel.AdugareUser(request);
         }
         
-        public void AdugareUser(Banca.ServiceReference.Utilizator utilizator) {
+        public bool AdugareUser(Banca.ServiceReference.Utilizator utilizator) {
             Banca.ServiceReference.AdugareUserRequest inValue = new Banca.ServiceReference.AdugareUserRequest();
             inValue.Body = new Banca.ServiceReference.AdugareUserRequestBody();
             inValue.Body.utilizator = utilizator;
             Banca.ServiceReference.AdugareUserResponse retVal = ((Banca.ServiceReference.WebServiceSoap)(this)).AdugareUser(inValue);
+            return retVal.Body.AdugareUserResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
