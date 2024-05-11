@@ -156,7 +156,7 @@
             this.panelSignUp.Controls.Add(this.labelTelefonSignUp);
             this.panelSignUp.Location = new System.Drawing.Point(488, 31);
             this.panelSignUp.Name = "panelSignUp";
-            this.panelSignUp.Size = new System.Drawing.Size(517, 610);
+            this.panelSignUp.Size = new System.Drawing.Size(429, 584);
             this.panelSignUp.TabIndex = 1;
             this.panelSignUp.Visible = false;
             // 
@@ -273,7 +273,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(998, 622);
+            this.ClientSize = new System.Drawing.Size(1076, 622);
             this.Controls.Add(this.panelSignUp);
             this.Controls.Add(this.panelLogin);
             this.Name = "FormAutentificare";
