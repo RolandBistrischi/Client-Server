@@ -81,7 +81,7 @@
             this.panelUser.Controls.Add(this.labelNume);
             this.panelUser.Location = new System.Drawing.Point(0, 43);
             this.panelUser.Name = "panelUser";
-            this.panelUser.Size = new System.Drawing.Size(559, 623);
+            this.panelUser.Size = new System.Drawing.Size(530, 583);
             this.panelUser.TabIndex = 1;
             // 
             // buttonCautadupaCNP
@@ -203,7 +203,7 @@
             this.tranzactieToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1139, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1090, 28);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -250,7 +250,7 @@
             this.panelValute.Controls.Add(this.labelCod);
             this.panelValute.Location = new System.Drawing.Point(565, 43);
             this.panelValute.Name = "panelValute";
-            this.panelValute.Size = new System.Drawing.Size(517, 610);
+            this.panelValute.Size = new System.Drawing.Size(484, 583);
             this.panelValute.TabIndex = 3;
             // 
             // buttonAdaugaValuta
@@ -347,7 +347,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1139, 709);
+            this.ClientSize = new System.Drawing.Size(1090, 636);
             this.Controls.Add(this.panelValute);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panelUser);

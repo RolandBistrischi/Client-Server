@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
@@ -8,6 +9,7 @@ namespace Banca
     public partial class FormUser : Form
     {
         ServiceReference.Utilizator utilizator_curent = null;
+        private Tranzactie formTranzactie = null;
 
         public FormUser()
         {
@@ -40,7 +42,8 @@ namespace Banca
                 return;
             }
             utilizator_curent = utilizator;
-
+            CentreazaPanel(panelUser);
+            CentreazaPanel(panelValute);
         }
 
         private void valuteToolStripMenuItem_Click( object sender, EventArgs e )
@@ -77,7 +80,7 @@ namespace Banca
 
         private void tranzactieToolStripMenuItem_Click( object sender, EventArgs e )
         {
-
+            CloseCurrentFormAndOpenNewFormAsync(utilizator_curent);
         }
         private void buttonAdaugaUser_Click( object sender, EventArgs e )
         {
@@ -219,10 +222,32 @@ namespace Banca
 
 
 
+        private void CentreazaPanel( Panel panel )
+        {
+            int extraHeight = menuStrip1.Height + 50;
+            MinimumSize = new Size(panel.Width + 50, panel.Height + extraHeight);
+            Size = new Size(panel.Width + 50, panel.Height + 50);
+
+            panel.Anchor = AnchorStyles.None;
+            panel.Dock = DockStyle.None;
+
+            // Dimensionează fereastra la dimensiunea panelului și plasează panelul în colțul stânga-sus
+            Size = panel.Size;
+            panel.Location = new Point(0, menuStrip1.Height);
+            MinimumSize = new Size(panel.Width+50, panel.Height + extraHeight);
+        }
 
 
-
-
+        private void ToateTextBoxurileledinPanelGoale( Panel panel )
+        {
+            foreach (Control control in panel.Controls)
+            {
+                if (control is TextBox textBox)
+                {
+                    textBox.Text = string.Empty;
+                }
+            }
+        }
 
         private void AfisareValute()
         {
@@ -251,6 +276,37 @@ namespace Banca
             return stringBuilder.ToString() + DateTime.Now.ToString();
         }
 
+        private void CloseCurrentFormAndOpenNewFormAsync( ServiceReference.Utilizator utilizator )
+        {
+            Hide();
+            ToateTextBoxurileledinPanelGoale(panelUser);
+            ToateTextBoxurileledinPanelGoale(panelValute);
+            if (utilizator.IdUser <= 0)
+            {
+                MessageBox.Show("Eroare la Login!");
+                return;
+            }
+
+            if (formTranzactie == null)
+            {
+                formTranzactie = new Tranzactie(utilizator)
+                {
+                    MinimumSize = new Size(520 , 500 )
+                };
+                formTranzactie.Size = formTranzactie.MinimumSize;
+                formTranzactie.FormClosed += ( sender, e ) => { formTranzactie = null; }; // Resetare referință când formularul este închis
+            }
+
+            formTranzactie.Visible = true;
+
+            if (Application.OpenForms ["FormUser"] != null)
+            {
+                Application.OpenForms ["FormUser"].Hide();
+            }
+
+            formTranzactie.Show();
+            formTranzactie.Focus();
+        }
 
     }
 }
