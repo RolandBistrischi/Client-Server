@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -94,28 +95,31 @@ namespace Banca
             string prenume = FormatName(textBoxPrenumeSignUp.Text);
             string cnp = textBoxCNPSignUp.Text.Trim();
             string tel = textBoxTelefonSignUp.Text;
-            string denumireValuta = null;
-            string simbolValuta = null;
-            if (string.IsNullOrEmpty(cnp))
+
+            if (string.IsNullOrWhiteSpace(cnp) || !IsOnlyNumber(cnp))
             {
                 MessageBox.Show("Introduceti cnp");
                 return;
             }
 
-            if (string.IsNullOrEmpty(nume) || string.IsNullOrEmpty(prenume) ||
-                string.IsNullOrEmpty(cnp) || IsValidTelefon(tel))
+            if (string.IsNullOrWhiteSpace(nume) || string.IsNullOrWhiteSpace(prenume))
             {
-                MessageBox.Show("Introduceți date.");
+                MessageBox.Show("Introduceți numele si prenumele.");
+                return;
+            }
+            if (!IsValidTelefon(tel))
+            {
+                MessageBox.Show("Introduceți un numar de telefon valid.");
                 return;
             }
 
-            if (string.IsNullOrEmpty(textBoxSoldSignUp.Text))
+            if (string.IsNullOrWhiteSpace(textBoxSoldSignUp.Text.Trim()))
             {
                 MessageBox.Show("Introduceți sold.");
                 return;
             }
 
-            if (!decimal.TryParse(textBoxSoldSignUp.Text.Trim(), out decimal sold))
+            if (!decimal.TryParse(textBoxSoldSignUp.Text.Trim(), out decimal sold) || sold < 0)
             {
                 MessageBox.Show("Introduceți un sold valid.");
                 return;
@@ -126,6 +130,8 @@ namespace Banca
                 return;
             }
 
+            string denumireValuta = null;
+            string simbolValuta = null;
             string Valuta = listBoxValuteSignUp.SelectedItem.ToString();
             denumireValuta = Valuta.Substring(0, Valuta.IndexOf('('));
             simbolValuta = Valuta.Substring(Valuta.IndexOf('(') + 1, Valuta.IndexOf(')') - Valuta.IndexOf('(') - 1).Trim();
@@ -148,8 +154,8 @@ namespace Banca
             };
             if (client.AdugareUser(utilizator))
             {
-                utilizator_curent = utilizator;
-                CloseCurrentFormAndOpenNewFormAsync(utilizator);
+                utilizator_curent = client.CautareUser(cnp);
+                CloseCurrentFormAndOpenNewFormAsync(utilizator_curent);
                 return;
             }
             else
@@ -196,7 +202,7 @@ namespace Banca
         }
         private bool IsValidTelefon( string telefon )
         {
-            if (string.IsNullOrEmpty(telefon))
+            if (string.IsNullOrWhiteSpace(telefon))
                 return false;
             telefon.Trim();
 
@@ -230,7 +236,13 @@ namespace Banca
             panelSignUp.Hide();
             MinimumSize = new Size(panelLogin.Width + 50, panelLogin.Height + 50);
         }
-
+        public static bool IsOnlyNumber( string text )
+        {
+            if (string.IsNullOrWhiteSpace(text))
+                return false;
+            text.Trim();
+            return text.All(char.IsDigit);
+        }
 
         private void CloseCurrentFormAndOpenNewFormAsync( ServiceReference.Utilizator utilizator )
         {
