@@ -36,7 +36,51 @@ namespace Banca
             }
         }
 
+        private void buttonTranzactie_Click( object sender, EventArgs e )
+        {
+            DialogResult result = MessageBox.Show(
+             "Ești sigur că vrei să faci tranzactia?",
+             "Confirmare",
+             MessageBoxButtons.YesNo,
+             MessageBoxIcon.Question
+             );
 
+            if (result == DialogResult.No)
+            {
+                return;
+            }
+
+            string iban = textBoxIBAN.Text.Trim();
+
+            if (!decimal.TryParse(textBoxSuma.Text.Trim(), out decimal sold) || sold < 0)
+            {
+                MessageBox.Show("Introduceți un sold valid.");
+                return;
+            }
+
+            if (sold > utilizator_curent.Sold)
+            {
+                MessageBox.Show("Aveti prea putini bani in cont.");
+                return;
+            }
+
+            ServiceReference.WebServiceSoapClient client = new ServiceReference.WebServiceSoapClient();
+            if (!client.IsIBANinDataBase(iban))
+            {
+                MessageBox.Show("Acest IBAN nu exista in baza de date.");
+            }
+
+            if (result == DialogResult.No)//(client.tranzactie())
+            {
+                MessageBox.Show("S-a putut efectua tranzactia.");
+
+            }
+            else
+            {
+                MessageBox.Show("Nu s-a putut efectua tranzactia.");
+            }
+
+        }
 
 
 
@@ -46,16 +90,13 @@ namespace Banca
             MinimumSize = new Size(panel.Width + 50, panel.Height + 50);
             Size = new Size(panel.Width + 50, panel.Height + 50);
 
-            panel.Anchor = AnchorStyles.None; 
-            panel.Dock = DockStyle.None; 
+            panel.Anchor = AnchorStyles.None;
+            panel.Dock = DockStyle.None;
             Size = panel.Size;
             panel.Location = new Point(0, 0);
             MinimumSize = new Size(panel.Width, panel.Height);
         }
 
-        private void button1_Click( object sender, EventArgs e )
-        {
 
-        }
     }
 }

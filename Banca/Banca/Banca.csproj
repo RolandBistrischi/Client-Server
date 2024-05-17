@@ -106,6 +106,9 @@
     <None Include="Connected Services\ServiceReference\Banca.ServiceReference.CautareValutaResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ServiceReference\Banca.ServiceReference.IsIBANinDataBaseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ServiceReference\Banca.ServiceReference.ModificaUserResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

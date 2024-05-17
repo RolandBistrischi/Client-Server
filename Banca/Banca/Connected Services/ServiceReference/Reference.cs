@@ -344,6 +344,13 @@ namespace Banca.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AdugareValuta", ReplyAction="*")]
         System.Threading.Tasks.Task<Banca.ServiceReference.AdugareValutaResponse> AdugareValutaAsync(Banca.ServiceReference.AdugareValutaRequest request);
         
+        // CODEGEN: Generating message contract since element name iban from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsIBANinDataBase", ReplyAction="*")]
+        Banca.ServiceReference.IsIBANinDataBaseResponse IsIBANinDataBase(Banca.ServiceReference.IsIBANinDataBaseRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IsIBANinDataBase", ReplyAction="*")]
+        System.Threading.Tasks.Task<Banca.ServiceReference.IsIBANinDataBaseResponse> IsIBANinDataBaseAsync(Banca.ServiceReference.IsIBANinDataBaseRequest request);
+        
         // CODEGEN: Generating message contract since element name denumire from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CautareValuta", ReplyAction="*")]
         Banca.ServiceReference.CautareValutaResponse CautareValuta(Banca.ServiceReference.CautareValutaRequest request);
@@ -633,6 +640,74 @@ namespace Banca.ServiceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class IsIBANinDataBaseRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="IsIBANinDataBase", Namespace="http://tempuri.org/", Order=0)]
+        public Banca.ServiceReference.IsIBANinDataBaseRequestBody Body;
+        
+        public IsIBANinDataBaseRequest() {
+        }
+        
+        public IsIBANinDataBaseRequest(Banca.ServiceReference.IsIBANinDataBaseRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class IsIBANinDataBaseRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string iban;
+        
+        public IsIBANinDataBaseRequestBody() {
+        }
+        
+        public IsIBANinDataBaseRequestBody(string iban) {
+            this.iban = iban;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class IsIBANinDataBaseResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="IsIBANinDataBaseResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Banca.ServiceReference.IsIBANinDataBaseResponseBody Body;
+        
+        public IsIBANinDataBaseResponse() {
+        }
+        
+        public IsIBANinDataBaseResponse(Banca.ServiceReference.IsIBANinDataBaseResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class IsIBANinDataBaseResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public bool IsIBANinDataBaseResult;
+        
+        public IsIBANinDataBaseResponseBody() {
+        }
+        
+        public IsIBANinDataBaseResponseBody(bool IsIBANinDataBaseResult) {
+            this.IsIBANinDataBaseResult = IsIBANinDataBaseResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class CautareValutaRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="CautareValuta", Namespace="http://tempuri.org/", Order=0)]
@@ -891,6 +966,31 @@ namespace Banca.ServiceReference {
             inValue.Body = new Banca.ServiceReference.AdugareValutaRequestBody();
             inValue.Body.valuta = valuta;
             return ((Banca.ServiceReference.WebServiceSoap)(this)).AdugareValutaAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Banca.ServiceReference.IsIBANinDataBaseResponse Banca.ServiceReference.WebServiceSoap.IsIBANinDataBase(Banca.ServiceReference.IsIBANinDataBaseRequest request) {
+            return base.Channel.IsIBANinDataBase(request);
+        }
+        
+        public bool IsIBANinDataBase(string iban) {
+            Banca.ServiceReference.IsIBANinDataBaseRequest inValue = new Banca.ServiceReference.IsIBANinDataBaseRequest();
+            inValue.Body = new Banca.ServiceReference.IsIBANinDataBaseRequestBody();
+            inValue.Body.iban = iban;
+            Banca.ServiceReference.IsIBANinDataBaseResponse retVal = ((Banca.ServiceReference.WebServiceSoap)(this)).IsIBANinDataBase(inValue);
+            return retVal.Body.IsIBANinDataBaseResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<Banca.ServiceReference.IsIBANinDataBaseResponse> Banca.ServiceReference.WebServiceSoap.IsIBANinDataBaseAsync(Banca.ServiceReference.IsIBANinDataBaseRequest request) {
+            return base.Channel.IsIBANinDataBaseAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<Banca.ServiceReference.IsIBANinDataBaseResponse> IsIBANinDataBaseAsync(string iban) {
+            Banca.ServiceReference.IsIBANinDataBaseRequest inValue = new Banca.ServiceReference.IsIBANinDataBaseRequest();
+            inValue.Body = new Banca.ServiceReference.IsIBANinDataBaseRequestBody();
+            inValue.Body.iban = iban;
+            return ((Banca.ServiceReference.WebServiceSoap)(this)).IsIBANinDataBaseAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

@@ -195,7 +195,34 @@ namespace Client_Server
             }
         }
 
+        [WebMethod]
+        public bool IsIBANinDataBase( string iban )
+        {
+            if (string.IsNullOrWhiteSpace(iban))
+                return false;
 
+            string query = "SELECT COUNT(1) FROM Useri WHERE iban = @IBAN";
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@IBAN", iban.Trim());
+                        int count = Convert.ToInt32(command.ExecuteScalar());
+
+                        return count > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("A apărut o excepție: " + ex.Message);
+                return false;
+            }
+        }
 
 
         [WebMethod]

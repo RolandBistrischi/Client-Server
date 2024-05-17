@@ -76,6 +76,20 @@
       <s:element name="AdugareValutaResponse">
         <s:complexType />
       </s:element>
+      <s:element name="IsIBANinDataBase">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="iban" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsIBANinDataBaseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsIBANinDataBaseResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="CautareValuta">
         <s:complexType>
           <s:sequence>
@@ -132,6 +146,12 @@
   <wsdl:message name="AdugareValutaSoapOut">
     <wsdl:part name="parameters" element="tns:AdugareValutaResponse" />
   </wsdl:message>
+  <wsdl:message name="IsIBANinDataBaseSoapIn">
+    <wsdl:part name="parameters" element="tns:IsIBANinDataBase" />
+  </wsdl:message>
+  <wsdl:message name="IsIBANinDataBaseSoapOut">
+    <wsdl:part name="parameters" element="tns:IsIBANinDataBaseResponse" />
+  </wsdl:message>
   <wsdl:message name="CautareValutaSoapIn">
     <wsdl:part name="parameters" element="tns:CautareValuta" />
   </wsdl:message>
@@ -160,6 +180,10 @@
     <wsdl:operation name="AdugareValuta">
       <wsdl:input message="tns:AdugareValutaSoapIn" />
       <wsdl:output message="tns:AdugareValutaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsIBANinDataBase">
+      <wsdl:input message="tns:IsIBANinDataBaseSoapIn" />
+      <wsdl:output message="tns:IsIBANinDataBaseSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="CautareValuta">
       <wsdl:input message="tns:CautareValutaSoapIn" />
@@ -201,6 +225,15 @@
     </wsdl:operation>
     <wsdl:operation name="AdugareValuta">
       <soap:operation soapAction="http://tempuri.org/AdugareValuta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsIBANinDataBase">
+      <soap:operation soapAction="http://tempuri.org/IsIBANinDataBase" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -258,6 +291,15 @@
     </wsdl:operation>
     <wsdl:operation name="AdugareValuta">
       <soap12:operation soapAction="http://tempuri.org/AdugareValuta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsIBANinDataBase">
+      <soap12:operation soapAction="http://tempuri.org/IsIBANinDataBase" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

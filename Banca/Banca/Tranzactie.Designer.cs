@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.panelTranzactie = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.buttonTranzactie = new System.Windows.Forms.Button();
+            this.textBoxSuma = new System.Windows.Forms.TextBox();
+            this.labelSuma = new System.Windows.Forms.Label();
+            this.textBoxIBAN = new System.Windows.Forms.TextBox();
+            this.labelIBAN = new System.Windows.Forms.Label();
             this.panelTranzactie.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -42,57 +42,57 @@
             this.panelTranzactie.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelTranzactie.Controls.Add(this.button1);
-            this.panelTranzactie.Controls.Add(this.textBox2);
-            this.panelTranzactie.Controls.Add(this.label2);
-            this.panelTranzactie.Controls.Add(this.textBox1);
-            this.panelTranzactie.Controls.Add(this.label1);
+            this.panelTranzactie.Controls.Add(this.buttonTranzactie);
+            this.panelTranzactie.Controls.Add(this.textBoxSuma);
+            this.panelTranzactie.Controls.Add(this.labelSuma);
+            this.panelTranzactie.Controls.Add(this.textBoxIBAN);
+            this.panelTranzactie.Controls.Add(this.labelIBAN);
             this.panelTranzactie.Location = new System.Drawing.Point(12, 12);
             this.panelTranzactie.Name = "panelTranzactie";
             this.panelTranzactie.Size = new System.Drawing.Size(543, 373);
             this.panelTranzactie.TabIndex = 0;
             // 
-            // button1
+            // buttonTranzactie
             // 
-            this.button1.Location = new System.Drawing.Point(364, 271);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(140, 64);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Confirma Tranzactie";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonTranzactie.Location = new System.Drawing.Point(364, 271);
+            this.buttonTranzactie.Name = "buttonTranzactie";
+            this.buttonTranzactie.Size = new System.Drawing.Size(140, 64);
+            this.buttonTranzactie.TabIndex = 4;
+            this.buttonTranzactie.Text = "Confirma Tranzactie";
+            this.buttonTranzactie.UseVisualStyleBackColor = true;
+            this.buttonTranzactie.Click += new System.EventHandler(this.buttonTranzactie_Click);
             // 
-            // textBox2
+            // textBoxSuma
             // 
-            this.textBox2.Location = new System.Drawing.Point(211, 173);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(182, 22);
-            this.textBox2.TabIndex = 3;
+            this.textBoxSuma.Location = new System.Drawing.Point(211, 173);
+            this.textBoxSuma.Name = "textBoxSuma";
+            this.textBoxSuma.Size = new System.Drawing.Size(182, 22);
+            this.textBoxSuma.TabIndex = 3;
             // 
-            // label2
+            // labelSuma
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(65, 176);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 17);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Suma";
+            this.labelSuma.AutoSize = true;
+            this.labelSuma.Location = new System.Drawing.Point(65, 176);
+            this.labelSuma.Name = "labelSuma";
+            this.labelSuma.Size = new System.Drawing.Size(44, 17);
+            this.labelSuma.TabIndex = 2;
+            this.labelSuma.Text = "Suma";
             // 
-            // textBox1
+            // textBoxIBAN
             // 
-            this.textBox1.Location = new System.Drawing.Point(211, 95);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(182, 22);
-            this.textBox1.TabIndex = 1;
+            this.textBoxIBAN.Location = new System.Drawing.Point(211, 95);
+            this.textBoxIBAN.Name = "textBoxIBAN";
+            this.textBoxIBAN.Size = new System.Drawing.Size(182, 22);
+            this.textBoxIBAN.TabIndex = 1;
             // 
-            // label1
+            // labelIBAN
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(65, 98);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(39, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "IBAN";
+            this.labelIBAN.AutoSize = true;
+            this.labelIBAN.Location = new System.Drawing.Point(65, 98);
+            this.labelIBAN.Name = "labelIBAN";
+            this.labelIBAN.Size = new System.Drawing.Size(39, 17);
+            this.labelIBAN.TabIndex = 0;
+            this.labelIBAN.Text = "IBAN";
             // 
             // Tranzactie
             // 
@@ -113,10 +113,10 @@
         #endregion
 
         private System.Windows.Forms.Panel panelTranzactie;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBoxIBAN;
+        private System.Windows.Forms.Label labelIBAN;
+        private System.Windows.Forms.Button buttonTranzactie;
+        private System.Windows.Forms.TextBox textBoxSuma;
+        private System.Windows.Forms.Label labelSuma;
     }
 }
