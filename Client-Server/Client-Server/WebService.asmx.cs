@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Diagnostics;
-using System.Timers;
-using System.Web;
+using System.Threading;
 using System.Web.Services;
+using ExchangeRate_API;
 
 namespace Client_Server
 {
@@ -20,16 +19,21 @@ namespace Client_Server
     public class WebService : System.Web.Services.WebService
     {
         private readonly string connectionString = "Data Source=DESKTOP-6ICN792;Initial Catalog = BancaDatabase; Integrated Security = True";
-        private Timer timer;
+
+        private readonly Timer _timer;
+        API_Obj api;
 
         public WebService()
         {
+            //connectionString = GetConnectionString();
             // Inițializează și configurează timer-ul
-            timer = new Timer
+            /*timer = new Timer
             {
                 Interval = 12 * 60 * 60 * 1000 // Intervalul în milisecunde (12 ore)
             };
-            timer.Elapsed += TimerElapsed;
+            timer.Elapsed += TimerElapsed;*/
+
+            _timer = new Timer(RunTask, null, TimeSpan.Zero, TimeSpan.FromHours(12));
         }
 
         [WebMethod]
@@ -79,8 +83,6 @@ namespace Client_Server
             }
             return false;
         }
-
-
 
         [WebMethod]
         public void ModificaUser( int id_user, string nume, string prenume, string telefon )
@@ -406,6 +408,10 @@ namespace Client_Server
 
                 // Obține rata de schimb valutar între valuta utilizatorului sursă și valuta utilizatorului destinatar
                 decimal rataDeSchimb = GetExchangeRate(utilizator.IdValuta, utilizator_destinatie.IdValuta);
+                if (rataDeSchimb <= 0)
+                {
+                    return false;
+                }
 
                 // Calculează echivalentul sumei trimise în valuta utilizatorului destinatar
                 decimal sumaInValutaDestinatar = pret * rataDeSchimb;
@@ -465,74 +471,89 @@ namespace Client_Server
             return false;
         }
 
-        private decimal GetExchangeRate( int idValuta1, int idValuta2 )
-        {
-            throw new NotImplementedException();
-        }
+
 
         [WebMethod]
-        public string ExecutePhp()
+        public decimal GetExchangeRate( int idValuta1, int idValuta2 )
+        {
+            throw new NotImplementedException();
+
+            return -1;
+        }
+        /* [WebMethod]
+         public string ExecutePhp()
+         {
+             try
+             {
+                 // Calea relativă la directorul aplicației pentru executabilul PHP
+                 string phpPath = HttpContext.Current.Server.MapPath("~/cursbnr/php.exe");
+
+                 // Calea relativă la directorul aplicației pentru fișierul PHP care trebuie executat
+                 string scriptPath = HttpContext.Current.Server.MapPath("~/cursbnr/CursBNR.php");
+
+                 ProcessStartInfo processStartInfo = new ProcessStartInfo
+                 {
+                     FileName = phpPath,
+                     Arguments = scriptPath,
+                     RedirectStandardOutput = true,
+                     RedirectStandardError = true,
+                     UseShellExecute = false,
+                     CreateNoWindow = true
+                 };
+
+                 using (Process process = new Process { StartInfo = processStartInfo })
+                 {
+                     process.Start();
+
+                     string output = process.StandardOutput.ReadToEnd();
+                     string error = process.StandardError.ReadToEnd();
+
+                     process.WaitForExit();
+
+                     if (process.ExitCode == 0)
+                     {
+                         return output;
+                     }
+                     else
+                     {
+                         return $"Error: {error}";
+                     }
+                 }
+             }
+             catch (Exception ex)
+             {
+                 return $"Exception: {ex.Message}";
+             }
+         }
+
+         private void TimerElapsed( object sender, ElapsedEventArgs e )
+         {
+             ExecutePhp(); // Apelarea funcției ExecutePhp la intervale de 12 ore
+         }
+
+         [WebMethod]
+         public void StartTimer()
+         {
+             timer.Start();
+         }
+
+         [WebMethod]
+         public void StopTimer()
+         {
+             timer.Stop();
+         }*/
+
+        private void RunTask( object state )
         {
             try
             {
-                // Calea relativă la directorul aplicației pentru executabilul PHP
-                string phpPath = HttpContext.Current.Server.MapPath("~/cursbnr/php.exe");
-
-                // Calea relativă la directorul aplicației pentru fișierul PHP care trebuie executat
-                string scriptPath = HttpContext.Current.Server.MapPath("~/cursbnr/CursBNR.php");
-
-                ProcessStartInfo processStartInfo = new ProcessStartInfo
-                {
-                    FileName = phpPath,
-                    Arguments = scriptPath,
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true,
-                    UseShellExecute = false,
-                    CreateNoWindow = true
-                };
-
-                using (Process process = new Process { StartInfo = processStartInfo })
-                {
-                    process.Start();
-
-                    string output = process.StandardOutput.ReadToEnd();
-                    string error = process.StandardError.ReadToEnd();
-
-                    process.WaitForExit();
-
-                    if (process.ExitCode == 0)
-                    {
-                        return output;
-                    }
-                    else
-                    {
-                        return $"Error: {error}";
-                    }
-                }
+                api = Rates.Import();
             }
             catch (Exception ex)
             {
-                return $"Exception: {ex.Message}";
+                Console.WriteLine(ex.Message);
             }
         }
-
-        private void TimerElapsed( object sender, ElapsedEventArgs e )
-        {
-            ExecutePhp(); // Apelarea funcției ExecutePhp la intervale de 12 ore
-        }
-
-        [WebMethod]
-        public void StartTimer()
-        {
-            timer.Start();
-        }
-
-        [WebMethod]
-        public void StopTimer()
-        {
-            timer.Stop();
-        }
-
         private string GetConnectionString()
         {
             ConnectionStringSettingsCollection connectionStrings = ConfigurationManager.ConnectionStrings;

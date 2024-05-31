@@ -364,6 +364,33 @@ namespace Banca.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ToateValutele", ReplyAction="*")]
         System.Threading.Tasks.Task<Banca.ServiceReference.ToateValuteleResponse> ToateValuteleAsync(Banca.ServiceReference.ToateValuteleRequest request);
+        
+        // CODEGEN: Generating message contract since element name iban from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetUserIdbyIban", ReplyAction="*")]
+        Banca.ServiceReference.GetUserIdbyIbanResponse GetUserIdbyIban(Banca.ServiceReference.GetUserIdbyIbanRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetUserIdbyIban", ReplyAction="*")]
+        System.Threading.Tasks.Task<Banca.ServiceReference.GetUserIdbyIbanResponse> GetUserIdbyIbanAsync(Banca.ServiceReference.GetUserIdbyIbanRequest request);
+        
+        // CODEGEN: Generating message contract since element name iban from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetUtilizatorByIban", ReplyAction="*")]
+        Banca.ServiceReference.GetUtilizatorByIbanResponse GetUtilizatorByIban(Banca.ServiceReference.GetUtilizatorByIbanRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetUtilizatorByIban", ReplyAction="*")]
+        System.Threading.Tasks.Task<Banca.ServiceReference.GetUtilizatorByIbanResponse> GetUtilizatorByIbanAsync(Banca.ServiceReference.GetUtilizatorByIbanRequest request);
+        
+        // CODEGEN: Generating message contract since element name utilizator from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Tranzactie", ReplyAction="*")]
+        Banca.ServiceReference.TranzactieResponse Tranzactie(Banca.ServiceReference.TranzactieRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Tranzactie", ReplyAction="*")]
+        System.Threading.Tasks.Task<Banca.ServiceReference.TranzactieResponse> TranzactieAsync(Banca.ServiceReference.TranzactieRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetExchangeRate", ReplyAction="*")]
+        decimal GetExchangeRate(int idValuta1, int idValuta2);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetExchangeRate", ReplyAction="*")]
+        System.Threading.Tasks.Task<decimal> GetExchangeRateAsync(int idValuta1, int idValuta2);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -837,6 +864,218 @@ namespace Banca.ServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetUserIdbyIbanRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetUserIdbyIban", Namespace="http://tempuri.org/", Order=0)]
+        public Banca.ServiceReference.GetUserIdbyIbanRequestBody Body;
+        
+        public GetUserIdbyIbanRequest() {
+        }
+        
+        public GetUserIdbyIbanRequest(Banca.ServiceReference.GetUserIdbyIbanRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetUserIdbyIbanRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string iban;
+        
+        public GetUserIdbyIbanRequestBody() {
+        }
+        
+        public GetUserIdbyIbanRequestBody(string iban) {
+            this.iban = iban;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetUserIdbyIbanResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetUserIdbyIbanResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Banca.ServiceReference.GetUserIdbyIbanResponseBody Body;
+        
+        public GetUserIdbyIbanResponse() {
+        }
+        
+        public GetUserIdbyIbanResponse(Banca.ServiceReference.GetUserIdbyIbanResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetUserIdbyIbanResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public int GetUserIdbyIbanResult;
+        
+        public GetUserIdbyIbanResponseBody() {
+        }
+        
+        public GetUserIdbyIbanResponseBody(int GetUserIdbyIbanResult) {
+            this.GetUserIdbyIbanResult = GetUserIdbyIbanResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetUtilizatorByIbanRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetUtilizatorByIban", Namespace="http://tempuri.org/", Order=0)]
+        public Banca.ServiceReference.GetUtilizatorByIbanRequestBody Body;
+        
+        public GetUtilizatorByIbanRequest() {
+        }
+        
+        public GetUtilizatorByIbanRequest(Banca.ServiceReference.GetUtilizatorByIbanRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetUtilizatorByIbanRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string iban;
+        
+        public GetUtilizatorByIbanRequestBody() {
+        }
+        
+        public GetUtilizatorByIbanRequestBody(string iban) {
+            this.iban = iban;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetUtilizatorByIbanResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetUtilizatorByIbanResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Banca.ServiceReference.GetUtilizatorByIbanResponseBody Body;
+        
+        public GetUtilizatorByIbanResponse() {
+        }
+        
+        public GetUtilizatorByIbanResponse(Banca.ServiceReference.GetUtilizatorByIbanResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetUtilizatorByIbanResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public Banca.ServiceReference.Utilizator GetUtilizatorByIbanResult;
+        
+        public GetUtilizatorByIbanResponseBody() {
+        }
+        
+        public GetUtilizatorByIbanResponseBody(Banca.ServiceReference.Utilizator GetUtilizatorByIbanResult) {
+            this.GetUtilizatorByIbanResult = GetUtilizatorByIbanResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class TranzactieRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="Tranzactie", Namespace="http://tempuri.org/", Order=0)]
+        public Banca.ServiceReference.TranzactieRequestBody Body;
+        
+        public TranzactieRequest() {
+        }
+        
+        public TranzactieRequest(Banca.ServiceReference.TranzactieRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class TranzactieRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public Banca.ServiceReference.Utilizator utilizator;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string iban;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+        public decimal pret;
+        
+        public TranzactieRequestBody() {
+        }
+        
+        public TranzactieRequestBody(Banca.ServiceReference.Utilizator utilizator, string iban, decimal pret) {
+            this.utilizator = utilizator;
+            this.iban = iban;
+            this.pret = pret;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class TranzactieResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="TranzactieResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Banca.ServiceReference.TranzactieResponseBody Body;
+        
+        public TranzactieResponse() {
+        }
+        
+        public TranzactieResponse(Banca.ServiceReference.TranzactieResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class TranzactieResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public bool TranzactieResult;
+        
+        public TranzactieResponseBody() {
+        }
+        
+        public TranzactieResponseBody(bool TranzactieResult) {
+            this.TranzactieResult = TranzactieResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface WebServiceSoapChannel : Banca.ServiceReference.WebServiceSoap, System.ServiceModel.IClientChannel {
     }
@@ -1041,6 +1280,93 @@ namespace Banca.ServiceReference {
             Banca.ServiceReference.ToateValuteleRequest inValue = new Banca.ServiceReference.ToateValuteleRequest();
             inValue.Body = new Banca.ServiceReference.ToateValuteleRequestBody();
             return ((Banca.ServiceReference.WebServiceSoap)(this)).ToateValuteleAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Banca.ServiceReference.GetUserIdbyIbanResponse Banca.ServiceReference.WebServiceSoap.GetUserIdbyIban(Banca.ServiceReference.GetUserIdbyIbanRequest request) {
+            return base.Channel.GetUserIdbyIban(request);
+        }
+        
+        public int GetUserIdbyIban(string iban) {
+            Banca.ServiceReference.GetUserIdbyIbanRequest inValue = new Banca.ServiceReference.GetUserIdbyIbanRequest();
+            inValue.Body = new Banca.ServiceReference.GetUserIdbyIbanRequestBody();
+            inValue.Body.iban = iban;
+            Banca.ServiceReference.GetUserIdbyIbanResponse retVal = ((Banca.ServiceReference.WebServiceSoap)(this)).GetUserIdbyIban(inValue);
+            return retVal.Body.GetUserIdbyIbanResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<Banca.ServiceReference.GetUserIdbyIbanResponse> Banca.ServiceReference.WebServiceSoap.GetUserIdbyIbanAsync(Banca.ServiceReference.GetUserIdbyIbanRequest request) {
+            return base.Channel.GetUserIdbyIbanAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<Banca.ServiceReference.GetUserIdbyIbanResponse> GetUserIdbyIbanAsync(string iban) {
+            Banca.ServiceReference.GetUserIdbyIbanRequest inValue = new Banca.ServiceReference.GetUserIdbyIbanRequest();
+            inValue.Body = new Banca.ServiceReference.GetUserIdbyIbanRequestBody();
+            inValue.Body.iban = iban;
+            return ((Banca.ServiceReference.WebServiceSoap)(this)).GetUserIdbyIbanAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Banca.ServiceReference.GetUtilizatorByIbanResponse Banca.ServiceReference.WebServiceSoap.GetUtilizatorByIban(Banca.ServiceReference.GetUtilizatorByIbanRequest request) {
+            return base.Channel.GetUtilizatorByIban(request);
+        }
+        
+        public Banca.ServiceReference.Utilizator GetUtilizatorByIban(string iban) {
+            Banca.ServiceReference.GetUtilizatorByIbanRequest inValue = new Banca.ServiceReference.GetUtilizatorByIbanRequest();
+            inValue.Body = new Banca.ServiceReference.GetUtilizatorByIbanRequestBody();
+            inValue.Body.iban = iban;
+            Banca.ServiceReference.GetUtilizatorByIbanResponse retVal = ((Banca.ServiceReference.WebServiceSoap)(this)).GetUtilizatorByIban(inValue);
+            return retVal.Body.GetUtilizatorByIbanResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<Banca.ServiceReference.GetUtilizatorByIbanResponse> Banca.ServiceReference.WebServiceSoap.GetUtilizatorByIbanAsync(Banca.ServiceReference.GetUtilizatorByIbanRequest request) {
+            return base.Channel.GetUtilizatorByIbanAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<Banca.ServiceReference.GetUtilizatorByIbanResponse> GetUtilizatorByIbanAsync(string iban) {
+            Banca.ServiceReference.GetUtilizatorByIbanRequest inValue = new Banca.ServiceReference.GetUtilizatorByIbanRequest();
+            inValue.Body = new Banca.ServiceReference.GetUtilizatorByIbanRequestBody();
+            inValue.Body.iban = iban;
+            return ((Banca.ServiceReference.WebServiceSoap)(this)).GetUtilizatorByIbanAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Banca.ServiceReference.TranzactieResponse Banca.ServiceReference.WebServiceSoap.Tranzactie(Banca.ServiceReference.TranzactieRequest request) {
+            return base.Channel.Tranzactie(request);
+        }
+        
+        public bool Tranzactie(Banca.ServiceReference.Utilizator utilizator, string iban, decimal pret) {
+            Banca.ServiceReference.TranzactieRequest inValue = new Banca.ServiceReference.TranzactieRequest();
+            inValue.Body = new Banca.ServiceReference.TranzactieRequestBody();
+            inValue.Body.utilizator = utilizator;
+            inValue.Body.iban = iban;
+            inValue.Body.pret = pret;
+            Banca.ServiceReference.TranzactieResponse retVal = ((Banca.ServiceReference.WebServiceSoap)(this)).Tranzactie(inValue);
+            return retVal.Body.TranzactieResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<Banca.ServiceReference.TranzactieResponse> Banca.ServiceReference.WebServiceSoap.TranzactieAsync(Banca.ServiceReference.TranzactieRequest request) {
+            return base.Channel.TranzactieAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<Banca.ServiceReference.TranzactieResponse> TranzactieAsync(Banca.ServiceReference.Utilizator utilizator, string iban, decimal pret) {
+            Banca.ServiceReference.TranzactieRequest inValue = new Banca.ServiceReference.TranzactieRequest();
+            inValue.Body = new Banca.ServiceReference.TranzactieRequestBody();
+            inValue.Body.utilizator = utilizator;
+            inValue.Body.iban = iban;
+            inValue.Body.pret = pret;
+            return ((Banca.ServiceReference.WebServiceSoap)(this)).TranzactieAsync(inValue);
+        }
+        
+        public decimal GetExchangeRate(int idValuta1, int idValuta2) {
+            return base.Channel.GetExchangeRate(idValuta1, idValuta2);
+        }
+        
+        public System.Threading.Tasks.Task<decimal> GetExchangeRateAsync(int idValuta1, int idValuta2) {
+            return base.Channel.GetExchangeRateAsync(idValuta1, idValuta2);
         }
     }
 }
