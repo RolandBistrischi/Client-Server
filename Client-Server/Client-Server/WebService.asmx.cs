@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Threading;
 using System.Web.Services;
+using ExchangeRate_API;
 
 namespace Client_Server
 {
@@ -17,6 +19,22 @@ namespace Client_Server
     public class WebService : System.Web.Services.WebService
     {
         private readonly string connectionString = "Data Source=DESKTOP-6ICN792;Initial Catalog = BancaDatabase; Integrated Security = True";
+
+        private readonly Timer _timer;
+        API_Obj api;
+
+        public WebService()
+        {
+            //connectionString = GetConnectionString();
+            // Inițializează și configurează timer-ul
+            /*timer = new Timer
+            {
+                Interval = 12 * 60 * 60 * 1000 // Intervalul în milisecunde (12 ore)
+            };
+            timer.Elapsed += TimerElapsed;*/
+
+            _timer = new Timer(RunTask, null, TimeSpan.Zero, TimeSpan.FromHours(12));
+        }
 
         [WebMethod]
         public bool AdugareUser( Utilizator utilizator )
@@ -65,8 +83,6 @@ namespace Client_Server
             }
             return false;
         }
-
-
 
         [WebMethod]
         public void ModificaUser( int id_user, string nume, string prenume, string telefon )
@@ -295,27 +311,111 @@ namespace Client_Server
 
             return valute;
         }
-        
-
-
-
 
         [WebMethod]
-        public void TransferConturi(string ibanSursa, string ibanDestinatie, decimal suma)
+        public int GetUserIdbyIban( string iban )
         {
-            if (suma <= 0)
-            {
-                Console.WriteLine("Suma transferată trebuie să fie mai mare decât zero.");
-                return;
-            }
+            if (string.IsNullOrWhiteSpace(iban.Trim()))
+                return -1;
 
-            string querySelectSursa = "SELECT sold FROM Useri WHERE iban = @IbanSursa";
-            string querySelectDestinatie = "SELECT sold FROM Useri WHERE iban = @IbanDestinatie";
-            string queryUpdateSursa = "UPDATE Useri SET sold = sold - @Suma WHERE iban = @IbanSursa";
-            string queryUpdateDestinatie = "UPDATE Useri SET sold = sold + @Suma WHERE iban = @IbanDestinatie";
+            string query = "SELECT id_user FROM Useri WHERE iban = @IBAN";
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@IBAN", iban.Trim());
+                        int id = Convert.ToInt32(command.ExecuteScalar());
+
+                        return id;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("A apărut o excepție: " + ex.Message);
+                return -1;
+            }
+        }
+
+        [WebMethod]
+        public Utilizator GetUtilizatorByIban( string iban )
+        {
+            if (string.IsNullOrWhiteSpace(iban.Trim()))
+                return null;
+
+            string query = "SELECT * FROM Useri WHERE iban = @IBAN";
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@IBAN", iban.Trim());
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                Utilizator utilizator = new Utilizator
+                                {
+                                    IdUser = Convert.ToInt32(reader ["id"]),
+                                    Sold = reader ["sold"] != DBNull.Value ? Convert.ToDecimal(reader ["sold"]) : 0,
+                                    Iban = iban,
+                                    Nume = reader ["nume"].ToString(),
+                                    Prenume = reader ["prenume"].ToString(),
+                                    Cnp = reader ["cnp"].ToString(),
+                                    Telefon = reader ["telefon"].ToString(),
+                                    DataCreare = Convert.ToDateTime(reader ["data_creare"]),
+                                    IdValuta = Convert.ToInt32(reader ["id_valuta"]),
+                                };
+
+                                return utilizator;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("A apărut o excepție: " + ex.Message);
+                return null;
+            }
+            return null;
+        }
+
+        [WebMethod]
+        public bool Tranzactie( Utilizator utilizator, string iban, decimal pret )
+        {
+            Utilizator utilizator_destinatie = GetUtilizatorByIban(iban);
+
+            if (utilizator == null || utilizator_destinatie == null)
+                return false;
+
+            if (utilizator.IdUser <= 0 || utilizator_destinatie.IdUser <= 0)
+                return false;
+
+            if (utilizator.Sold < pret || pret <= 0)
+                return false;
 
             try
             {
+
+                // Obține rata de schimb valutar între valuta utilizatorului sursă și valuta utilizatorului destinatar
+                decimal rataDeSchimb = GetExchangeRate(utilizator.IdValuta, utilizator_destinatie.IdValuta);
+                if (rataDeSchimb <= 0)
+                {
+                    return false;
+                }
+
+                // Calculează echivalentul sumei trimise în valuta utilizatorului destinatar
+                decimal sumaInValutaDestinatar = pret * rataDeSchimb;
+
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
@@ -324,81 +424,136 @@ namespace Client_Server
                     {
                         try
                         {
-                          
-                            decimal soldSursa = 0;
-                            using (SqlCommand commandSelectSursa = new SqlCommand(querySelectSursa, connection, transaction))
+                            string insertQuery = "INSERT INTO tranzactii (Id_user_sursa, Id_user_destinatie, Id_valuta, suma, data_tranzactie, stare_tranzactie) VALUES (@id_user_sursa, @id_user_destinatie, @id_valuta, @suma, GETDATE(), 'In curs')";
+                            using (SqlCommand command = new SqlCommand(insertQuery, connection, transaction))
                             {
-                                commandSelectSursa.Parameters.AddWithValue("@IbanSursa", ibanSursa.Trim());
-                                object result = commandSelectSursa.ExecuteScalar();
-                                if (result != null)
-                                {
-                                    soldSursa = Convert.ToDecimal(result);
-                                    if (soldSursa < suma)
-                                    {
-                                        Console.WriteLine("Sold insuficient în contul sursă.");
-                                        transaction.Rollback();
-                                        return;
-                                    }
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Contul sursă nu a fost găsit.");
-                                    transaction.Rollback();
-                                    return;
-                                }
+                                command.Parameters.AddWithValue("@id_user_sursa", utilizator.IdUser);
+                                command.Parameters.AddWithValue("@id_user_destinatie", utilizator_destinatie.IdUser);
+                                command.Parameters.AddWithValue("@id_valuta", utilizator_destinatie.IdValuta);
+                                command.Parameters.AddWithValue("@suma", sumaInValutaDestinatar);
+                                command.ExecuteNonQuery();
                             }
 
-                          
-                            using (SqlCommand commandSelectDestinatie = new SqlCommand(querySelectDestinatie, connection, transaction))
+                            // Actualizează soldul utilizatorului sursă
+                            decimal newSoldSursa = utilizator.Sold - pret;
+                            string updateQuerySursa = "UPDATE Useri SET sold = @sold WHERE id = @id";
+                            using (SqlCommand command = new SqlCommand(updateQuerySursa, connection, transaction))
                             {
-                                commandSelectDestinatie.Parameters.AddWithValue("@IbanDestinatie", ibanDestinatie.Trim());
-                                object result = commandSelectDestinatie.ExecuteScalar();
-                                if (result == null)
-                                {
-                                    Console.WriteLine("Contul destinație nu a fost găsit.");
-                                    transaction.Rollback();
-                                    return;
-                                }
+                                command.Parameters.AddWithValue("@sold", newSoldSursa);
+                                command.Parameters.AddWithValue("@id", utilizator.IdUser);
+                                command.ExecuteNonQuery();
                             }
 
-                           
-                            using (SqlCommand commandUpdateSursa = new SqlCommand(queryUpdateSursa, connection, transaction))
+                            // Actualizează soldul utilizatorului destinatar
+                            string updateQueryDestinatie = "UPDATE Useri SET sold = sold + @suma WHERE id = @id";
+                            using (SqlCommand command = new SqlCommand(updateQueryDestinatie, connection, transaction))
                             {
-                                commandUpdateSursa.Parameters.AddWithValue("@Suma", suma);
-                                commandUpdateSursa.Parameters.AddWithValue("@IbanSursa", ibanSursa.Trim());
-                                commandUpdateSursa.ExecuteNonQuery();
-                            }
-
-                           
-                            using (SqlCommand commandUpdateDestinatie = new SqlCommand(queryUpdateDestinatie, connection, transaction))
-                            {
-                                commandUpdateDestinatie.Parameters.AddWithValue("@Suma", suma);
-                                commandUpdateDestinatie.Parameters.AddWithValue("@IbanDestinatie", ibanDestinatie.Trim());
-                                commandUpdateDestinatie.ExecuteNonQuery();
+                                command.Parameters.AddWithValue("@suma", sumaInValutaDestinatar);
+                                command.Parameters.AddWithValue("@id", utilizator_destinatie.IdUser);
+                                command.ExecuteNonQuery();
                             }
 
                             transaction.Commit();
-                            Console.WriteLine("Transferul a fost realizat cu succes.");
+                            return true;
                         }
-                        catch (Exception ex)
+                        catch (Exception)
                         {
                             transaction.Rollback();
-                            Console.WriteLine("A apărut o eroare în timpul transferului: " + ex.Message);
+                            throw;
                         }
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine("A apărut o excepție: " + ex.Message);
+                return false;
             }
+            return false;
         }
 
 
 
+        [WebMethod]
+        public decimal GetExchangeRate( int idValuta1, int idValuta2 )
+        {
+            throw new NotImplementedException();
 
+            return -1;
+        }
+        /* [WebMethod]
+         public string ExecutePhp()
+         {
+             try
+             {
+                 // Calea relativă la directorul aplicației pentru executabilul PHP
+                 string phpPath = HttpContext.Current.Server.MapPath("~/cursbnr/php.exe");
 
+                 // Calea relativă la directorul aplicației pentru fișierul PHP care trebuie executat
+                 string scriptPath = HttpContext.Current.Server.MapPath("~/cursbnr/CursBNR.php");
 
+                 ProcessStartInfo processStartInfo = new ProcessStartInfo
+                 {
+                     FileName = phpPath,
+                     Arguments = scriptPath,
+                     RedirectStandardOutput = true,
+                     RedirectStandardError = true,
+                     UseShellExecute = false,
+                     CreateNoWindow = true
+                 };
+
+                 using (Process process = new Process { StartInfo = processStartInfo })
+                 {
+                     process.Start();
+
+                     string output = process.StandardOutput.ReadToEnd();
+                     string error = process.StandardError.ReadToEnd();
+
+                     process.WaitForExit();
+
+                     if (process.ExitCode == 0)
+                     {
+                         return output;
+                     }
+                     else
+                     {
+                         return $"Error: {error}";
+                     }
+                 }
+             }
+             catch (Exception ex)
+             {
+                 return $"Exception: {ex.Message}";
+             }
+         }
+
+         private void TimerElapsed( object sender, ElapsedEventArgs e )
+         {
+             ExecutePhp(); // Apelarea funcției ExecutePhp la intervale de 12 ore
+         }
+
+         [WebMethod]
+         public void StartTimer()
+         {
+             timer.Start();
+         }
+
+         [WebMethod]
+         public void StopTimer()
+         {
+             timer.Stop();
+         }*/
+
+        private void RunTask( object state )
+        {
+            try
+            {
+                api = Rates.Import();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
         private string GetConnectionString()
         {
             ConnectionStringSettingsCollection connectionStrings = ConfigurationManager.ConnectionStrings;

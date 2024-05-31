@@ -120,6 +120,65 @@
           <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
         </s:sequence>
       </s:complexType>
+      <s:element name="GetUserIdbyIban">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="iban" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserIdbyIbanResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetUserIdbyIbanResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUtilizatorByIban">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="iban" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUtilizatorByIbanResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUtilizatorByIbanResult" type="tns:Utilizator" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Tranzactie">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="utilizator" type="tns:Utilizator" />
+            <s:element minOccurs="0" maxOccurs="1" name="iban" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pret" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TranzactieResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TranzactieResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExchangeRate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idValuta1" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="idValuta2" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExchangeRateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetExchangeRateResult" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="AdugareUserSoapIn">
@@ -164,6 +223,30 @@
   <wsdl:message name="ToateValuteleSoapOut">
     <wsdl:part name="parameters" element="tns:ToateValuteleResponse" />
   </wsdl:message>
+  <wsdl:message name="GetUserIdbyIbanSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserIdbyIban" />
+  </wsdl:message>
+  <wsdl:message name="GetUserIdbyIbanSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserIdbyIbanResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUtilizatorByIbanSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUtilizatorByIban" />
+  </wsdl:message>
+  <wsdl:message name="GetUtilizatorByIbanSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUtilizatorByIbanResponse" />
+  </wsdl:message>
+  <wsdl:message name="TranzactieSoapIn">
+    <wsdl:part name="parameters" element="tns:Tranzactie" />
+  </wsdl:message>
+  <wsdl:message name="TranzactieSoapOut">
+    <wsdl:part name="parameters" element="tns:TranzactieResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateSoapIn">
+    <wsdl:part name="parameters" element="tns:GetExchangeRate" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateSoapOut">
+    <wsdl:part name="parameters" element="tns:GetExchangeRateResponse" />
+  </wsdl:message>
   <wsdl:portType name="WebServiceSoap">
     <wsdl:operation name="AdugareUser">
       <wsdl:input message="tns:AdugareUserSoapIn" />
@@ -192,6 +275,22 @@
     <wsdl:operation name="ToateValutele">
       <wsdl:input message="tns:ToateValuteleSoapIn" />
       <wsdl:output message="tns:ToateValuteleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserIdbyIban">
+      <wsdl:input message="tns:GetUserIdbyIbanSoapIn" />
+      <wsdl:output message="tns:GetUserIdbyIbanSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUtilizatorByIban">
+      <wsdl:input message="tns:GetUtilizatorByIbanSoapIn" />
+      <wsdl:output message="tns:GetUtilizatorByIbanSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Tranzactie">
+      <wsdl:input message="tns:TranzactieSoapIn" />
+      <wsdl:output message="tns:TranzactieSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRate">
+      <wsdl:input message="tns:GetExchangeRateSoapIn" />
+      <wsdl:output message="tns:GetExchangeRateSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebServiceSoap" type="tns:WebServiceSoap">
@@ -259,6 +358,42 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetUserIdbyIban">
+      <soap:operation soapAction="http://tempuri.org/GetUserIdbyIban" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUtilizatorByIban">
+      <soap:operation soapAction="http://tempuri.org/GetUtilizatorByIban" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Tranzactie">
+      <soap:operation soapAction="http://tempuri.org/Tranzactie" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRate">
+      <soap:operation soapAction="http://tempuri.org/GetExchangeRate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebServiceSoap12" type="tns:WebServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -318,6 +453,42 @@
     </wsdl:operation>
     <wsdl:operation name="ToateValutele">
       <soap12:operation soapAction="http://tempuri.org/ToateValutele" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserIdbyIban">
+      <soap12:operation soapAction="http://tempuri.org/GetUserIdbyIban" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUtilizatorByIban">
+      <soap12:operation soapAction="http://tempuri.org/GetUtilizatorByIban" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Tranzactie">
+      <soap12:operation soapAction="http://tempuri.org/Tranzactie" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRate">
+      <soap12:operation soapAction="http://tempuri.org/GetExchangeRate" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
