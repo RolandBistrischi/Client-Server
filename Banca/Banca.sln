@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.34526.175
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banca", "Banca\Banca.csproj", "{A0AF2FA2-0534-43F3-A11D-9508321085E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client-Server", "..\Client-Server\Client-Server\Client-Server.csproj", "{35903DB1-4E28-4985-83EC-0F2FA06E9730}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrencyUpdater", "CurrencyUpdater\CurrencyUpdater.csproj", "{BBA01D43-2845-4C80-BB8B-6D14ED39A8EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{35903DB1-4E28-4985-83EC-0F2FA06E9730}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35903DB1-4E28-4985-83EC-0F2FA06E9730}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35903DB1-4E28-4985-83EC-0F2FA06E9730}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBA01D43-2845-4C80-BB8B-6D14ED39A8EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBA01D43-2845-4C80-BB8B-6D14ED39A8EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBA01D43-2845-4C80-BB8B-6D14ED39A8EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBA01D43-2845-4C80-BB8B-6D14ED39A8EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
