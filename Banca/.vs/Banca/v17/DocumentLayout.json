@@ -1,0 +1,36 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\GITHUB\\Client-Server\\Banca\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{35903DB1-4E28-4985-83EC-0F2FA06E9730}|..\\Client-Server\\Client-Server\\Client-Server.csproj|c:\\github\\client-server\\client-server\\client-server\\webservice.asmx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "WebService.asmx.cs",
+              "DocumentMoniker": "C:\\GITHUB\\Client-Server\\Client-Server\\Client-Server\\WebService.asmx.cs",
+              "RelativeDocumentMoniker": "..\\Client-Server\\Client-Server\\WebService.asmx.cs",
+              "ToolTip": "C:\\GITHUB\\Client-Server\\Client-Server\\Client-Server\\WebService.asmx.cs",
+              "RelativeToolTip": "..\\Client-Server\\Client-Server\\WebService.asmx.cs",
+              "ViewState": "AQIAAAoBAAAAAAAAAAAcwHIBAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T13:54:05.768Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -299,7 +299,99 @@ namespace Client_Server
 
 
 
+        [WebMethod]
+        public void TransferConturi(string ibanSursa, string ibanDestinatie, decimal suma)
+        {
+            if (suma <= 0)
+            {
+                Console.WriteLine("Suma transferată trebuie să fie mai mare decât zero.");
+                return;
+            }
 
+            string querySelectSursa = "SELECT sold FROM Useri WHERE iban = @IbanSursa";
+            string querySelectDestinatie = "SELECT sold FROM Useri WHERE iban = @IbanDestinatie";
+            string queryUpdateSursa = "UPDATE Useri SET sold = sold - @Suma WHERE iban = @IbanSursa";
+            string queryUpdateDestinatie = "UPDATE Useri SET sold = sold + @Suma WHERE iban = @IbanDestinatie";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlTransaction transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                          
+                            decimal soldSursa = 0;
+                            using (SqlCommand commandSelectSursa = new SqlCommand(querySelectSursa, connection, transaction))
+                            {
+                                commandSelectSursa.Parameters.AddWithValue("@IbanSursa", ibanSursa.Trim());
+                                object result = commandSelectSursa.ExecuteScalar();
+                                if (result != null)
+                                {
+                                    soldSursa = Convert.ToDecimal(result);
+                                    if (soldSursa < suma)
+                                    {
+                                        Console.WriteLine("Sold insuficient în contul sursă.");
+                                        transaction.Rollback();
+                                        return;
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Contul sursă nu a fost găsit.");
+                                    transaction.Rollback();
+                                    return;
+                                }
+                            }
+
+                          
+                            using (SqlCommand commandSelectDestinatie = new SqlCommand(querySelectDestinatie, connection, transaction))
+                            {
+                                commandSelectDestinatie.Parameters.AddWithValue("@IbanDestinatie", ibanDestinatie.Trim());
+                                object result = commandSelectDestinatie.ExecuteScalar();
+                                if (result == null)
+                                {
+                                    Console.WriteLine("Contul destinație nu a fost găsit.");
+                                    transaction.Rollback();
+                                    return;
+                                }
+                            }
+
+                           
+                            using (SqlCommand commandUpdateSursa = new SqlCommand(queryUpdateSursa, connection, transaction))
+                            {
+                                commandUpdateSursa.Parameters.AddWithValue("@Suma", suma);
+                                commandUpdateSursa.Parameters.AddWithValue("@IbanSursa", ibanSursa.Trim());
+                                commandUpdateSursa.ExecuteNonQuery();
+                            }
+
+                           
+                            using (SqlCommand commandUpdateDestinatie = new SqlCommand(queryUpdateDestinatie, connection, transaction))
+                            {
+                                commandUpdateDestinatie.Parameters.AddWithValue("@Suma", suma);
+                                commandUpdateDestinatie.Parameters.AddWithValue("@IbanDestinatie", ibanDestinatie.Trim());
+                                commandUpdateDestinatie.ExecuteNonQuery();
+                            }
+
+                            transaction.Commit();
+                            Console.WriteLine("Transferul a fost realizat cu succes.");
+                        }
+                        catch (Exception ex)
+                        {
+                            transaction.Rollback();
+                            Console.WriteLine("A apărut o eroare în timpul transferului: " + ex.Message);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("A apărut o excepție: " + ex.Message);
+            }
+        }
 
 
 
