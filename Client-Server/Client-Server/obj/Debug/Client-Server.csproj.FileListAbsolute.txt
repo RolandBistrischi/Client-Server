@@ -172,3 +172,5 @@ C:\partitia d\Visual Studio\visual studio proiecte\Client-Server\Client-Server\C
 C:\partitia d\Visual Studio\visual studio proiecte\Client-Server\Client-Server\Client-Server\bin\System.Numerics.Vectors.xml
 C:\partitia d\Visual Studio\visual studio proiecte\Client-Server\Client-Server\Client-Server\bin\System.Runtime.CompilerServices.Unsafe.xml
 C:\partitia d\Visual Studio\visual studio proiecte\Client-Server\Client-Server\Client-Server\bin\System.Text.Encodings.Web.xml
+C:\partitia d\Visual Studio\visual studio proiecte\Client-Server\Client-Server\Client-Server\bin\Newtonsoft.Json.dll
+C:\partitia d\Visual Studio\visual studio proiecte\Client-Server\Client-Server\Client-Server\bin\Newtonsoft.Json.xml
