@@ -7,6 +7,19 @@ C:\partitia d\Visual Studio\visual studio proiecte\Client-Server\Banca\Banca\obj
 C:\partitia d\Visual Studio\visual studio proiecte\Client-Server\Banca\Banca\obj\Debug\Banca.csproj.CoreCompileInputs.cache
 C:\partitia d\Visual Studio\visual studio proiecte\Client-Server\Banca\Banca\obj\Debug\Banca.exe
 C:\partitia d\Visual Studio\visual studio proiecte\Client-Server\Banca\Banca\obj\Debug\Banca.pdb
+<<<<<<< Updated upstream
 C:\partitia d\Visual Studio\visual studio proiecte\Client-Server\Banca\Banca\obj\Debug\Banca.Tranzactie.resources
 C:\partitia d\Visual Studio\visual studio proiecte\Client-Server\Banca\Banca\obj\Debug\Banca.FormAutentificare.resources
 C:\partitia d\Visual Studio\visual studio proiecte\Client-Server\Banca\Banca\obj\Debug\Banca.FormUser.resources
+=======
+C:\GITHUB\Client-Server\Banca\Banca\bin\Debug\Banca.exe.config
+C:\GITHUB\Client-Server\Banca\Banca\bin\Debug\Banca.exe
+C:\GITHUB\Client-Server\Banca\Banca\bin\Debug\Banca.pdb
+C:\GITHUB\Client-Server\Banca\Banca\obj\Debug\Banca.csproj.AssemblyReference.cache
+C:\GITHUB\Client-Server\Banca\Banca\obj\Debug\Banca.Form1.resources
+C:\GITHUB\Client-Server\Banca\Banca\obj\Debug\Banca.Properties.Resources.resources
+C:\GITHUB\Client-Server\Banca\Banca\obj\Debug\Banca.csproj.GenerateResource.cache
+C:\GITHUB\Client-Server\Banca\Banca\obj\Debug\Banca.csproj.CoreCompileInputs.cache
+C:\GITHUB\Client-Server\Banca\Banca\obj\Debug\Banca.exe
+C:\GITHUB\Client-Server\Banca\Banca\obj\Debug\Banca.pdb
+>>>>>>> Stashed changes

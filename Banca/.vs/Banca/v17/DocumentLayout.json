@@ -4,6 +4,16 @@
   "Documents": [
     {
       "AbsoluteMoniker": "D:0:0:{35903DB1-4E28-4985-83EC-0F2FA06E9730}|..\\Client-Server\\Client-Server\\Client-Server.csproj|c:\\github\\client-server\\client-server\\client-server\\webservice.asmx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+<<<<<<< Updated upstream
+=======
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0AF2FA2-0534-43F3-A11D-9508321085E2}|Banca\\Banca.csproj|c:\\github\\client-server\\banca\\banca\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A0AF2FA2-0534-43F3-A11D-9508321085E2}|Banca\\Banca.csproj|solutionrelative:banca\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35903DB1-4E28-4985-83EC-0F2FA06E9730}|..\\Client-Server\\Client-Server\\Client-Server.csproj|c:\\github\\client-server\\client-server\\client-server\\utilizator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+>>>>>>> Stashed changes
     }
   ],
   "DocumentGroupContainers": [
@@ -13,19 +23,57 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
+<<<<<<< Updated upstream
           "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+=======
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\GITHUB\\Client-Server\\Banca\\Banca\\Form1.cs",
+              "RelativeDocumentMoniker": "Banca\\Form1.cs",
+              "ToolTip": "C:\\GITHUB\\Client-Server\\Banca\\Banca\\Form1.cs [Design]",
+              "RelativeToolTip": "Banca\\Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T11:14:37.571Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+>>>>>>> Stashed changes
               "DocumentIndex": 0,
               "Title": "WebService.asmx.cs",
               "DocumentMoniker": "C:\\GITHUB\\Client-Server\\Client-Server\\Client-Server\\WebService.asmx.cs",
               "RelativeDocumentMoniker": "..\\Client-Server\\Client-Server\\WebService.asmx.cs",
               "ToolTip": "C:\\GITHUB\\Client-Server\\Client-Server\\Client-Server\\WebService.asmx.cs",
               "RelativeToolTip": "..\\Client-Server\\Client-Server\\WebService.asmx.cs",
+<<<<<<< Updated upstream
               "ViewState": "AQIAAAoBAAAAAAAAAAAcwHIBAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-31T13:54:05.768Z",
+=======
+              "ViewState": "AQIAAPEAAAAAAAAAAAAAAAQBAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T11:14:06.424Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Utilizator.cs",
+              "DocumentMoniker": "C:\\GITHUB\\Client-Server\\Client-Server\\Client-Server\\Utilizator.cs",
+              "RelativeDocumentMoniker": "..\\Client-Server\\Client-Server\\Utilizator.cs",
+              "ToolTip": "C:\\GITHUB\\Client-Server\\Client-Server\\Client-Server\\Utilizator.cs",
+              "RelativeToolTip": "..\\Client-Server\\Client-Server\\Utilizator.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T11:12:29.664Z",
+>>>>>>> Stashed changes
               "EditorCaption": ""
             }
           ]

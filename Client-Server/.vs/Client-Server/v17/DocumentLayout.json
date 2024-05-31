@@ -1,0 +1,113 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\GITHUB\\Client-Server\\Client-Server\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A0AF2FA2-0534-43F3-A11D-9508321085E2}|..\\Banca\\Banca\\Banca.csproj|c:\\github\\client-server\\banca\\banca\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0AF2FA2-0534-43F3-A11D-9508321085E2}|..\\Banca\\Banca\\Banca.csproj|c:\\github\\client-server\\banca\\banca\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0AF2FA2-0534-43F3-A11D-9508321085E2}|..\\Banca\\Banca\\Banca.csproj|c:\\github\\client-server\\banca\\banca\\form1.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0AF2FA2-0534-43F3-A11D-9508321085E2}|..\\Banca\\Banca\\Banca.csproj|c:\\github\\client-server\\banca\\banca\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35903DB1-4E28-4985-83EC-0F2FA06E9730}|Client-Server\\Client-Server.csproj|C:\\GITHUB\\Client-Server\\Client-Server\\client-server\\webservice.asmx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35903DB1-4E28-4985-83EC-0F2FA06E9730}|Client-Server\\Client-Server.csproj|solutionrelative:client-server\\webservice.asmx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35903DB1-4E28-4985-83EC-0F2FA06E9730}|Client-Server\\Client-Server.csproj|C:\\GITHUB\\Client-Server\\Client-Server\\client-server\\utilizator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35903DB1-4E28-4985-83EC-0F2FA06E9730}|Client-Server\\Client-Server.csproj|solutionrelative:client-server\\utilizator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\GITHUB\\Client-Server\\Banca\\Banca\\Form1.cs",
+              "RelativeDocumentMoniker": "..\\Banca\\Banca\\Form1.cs",
+              "ToolTip": "C:\\GITHUB\\Client-Server\\Banca\\Banca\\Form1.cs [Design]",
+              "RelativeToolTip": "..\\Banca\\Banca\\Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-27T16:22:50.803Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\GITHUB\\Client-Server\\Banca\\Banca\\Program.cs",
+              "RelativeDocumentMoniker": "..\\Banca\\Banca\\Program.cs",
+              "ToolTip": "C:\\GITHUB\\Client-Server\\Banca\\Banca\\Program.cs",
+              "RelativeToolTip": "..\\Banca\\Banca\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-27T15:27:14.562Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.Designer.cs",
+              "DocumentMoniker": "C:\\GITHUB\\Client-Server\\Banca\\Banca\\Form1.Designer.cs",
+              "RelativeDocumentMoniker": "..\\Banca\\Banca\\Form1.Designer.cs",
+              "ToolTip": "C:\\GITHUB\\Client-Server\\Banca\\Banca\\Form1.Designer.cs",
+              "RelativeToolTip": "..\\Banca\\Banca\\Form1.Designer.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGgBAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-27T15:26:58.18Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Form1.resx",
+              "DocumentMoniker": "C:\\GITHUB\\Client-Server\\Banca\\Banca\\Form1.resx",
+              "RelativeDocumentMoniker": "..\\Banca\\Banca\\Form1.resx",
+              "ToolTip": "C:\\GITHUB\\Client-Server\\Banca\\Banca\\Form1.resx",
+              "RelativeToolTip": "..\\Banca\\Banca\\Form1.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2024-04-27T15:26:56.79Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Utilizator.cs",
+              "DocumentMoniker": "C:\\GITHUB\\Client-Server\\Client-Server\\Client-Server\\Utilizator.cs",
+              "RelativeDocumentMoniker": "Client-Server\\Utilizator.cs",
+              "ToolTip": "C:\\GITHUB\\Client-Server\\Client-Server\\Client-Server\\Utilizator.cs",
+              "RelativeToolTip": "Client-Server\\Utilizator.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAAwAIAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-27T15:26:41.945Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "WebService.asmx.cs",
+              "DocumentMoniker": "C:\\GITHUB\\Client-Server\\Client-Server\\Client-Server\\WebService.asmx.cs",
+              "RelativeDocumentMoniker": "Client-Server\\WebService.asmx.cs",
+              "ToolTip": "C:\\GITHUB\\Client-Server\\Client-Server\\Client-Server\\WebService.asmx.cs",
+              "RelativeToolTip": "Client-Server\\WebService.asmx.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-27T15:24:57.562Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
