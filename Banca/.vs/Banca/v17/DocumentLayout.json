@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "C:\\GITHUB\\Client-Server\\Banca\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BBA01D43-2845-4C80-BB8B-6D14ED39A8EF}|CurrencyUpdater\\CurrencyUpdater.csproj|c:\\github\\client-server\\banca\\currencyupdater\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BBA01D43-2845-4C80-BB8B-6D14ED39A8EF}|CurrencyUpdater\\CurrencyUpdater.csproj|solutionrelative:currencyupdater\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A0AF2FA2-0534-43F3-A11D-9508321085E2}|Banca\\Banca.csproj|c:\\github\\client-server\\banca\\banca\\formautentificare.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A0AF2FA2-0534-43F3-A11D-9508321085E2}|Banca\\Banca.csproj|solutionrelative:banca\\formautentificare.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0AF2FA2-0534-43F3-A11D-9508321085E2}|Banca\\Banca.csproj|C:\\GITHUB\\Client-Server\\Banca\\banca\\tranzactie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A0AF2FA2-0534-43F3-A11D-9508321085E2}|Banca\\Banca.csproj|solutionrelative:banca\\tranzactie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0AF2FA2-0534-43F3-A11D-9508321085E2}|Banca\\Banca.csproj|c:\\github\\client-server\\banca\\banca\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A0AF2FA2-0534-43F3-A11D-9508321085E2}|Banca\\Banca.csproj|solutionrelative:banca\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0AF2FA2-0534-43F3-A11D-9508321085E2}|Banca\\Banca.csproj|c:\\github\\client-server\\banca\\banca\\formautentificare.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0AF2FA2-0534-43F3-A11D-9508321085E2}|Banca\\Banca.csproj|solutionrelative:banca\\formautentificare.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{35903DB1-4E28-4985-83EC-0F2FA06E9730}|..\\Client-Server\\Client-Server\\Client-Server.csproj|c:\\github\\client-server\\client-server\\client-server\\webservice.asmx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -17,33 +29,68 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\GITHUB\\Client-Server\\Banca\\CurrencyUpdater\\Program.cs",
-              "RelativeDocumentMoniker": "CurrencyUpdater\\Program.cs",
-              "ToolTip": "C:\\GITHUB\\Client-Server\\Banca\\CurrencyUpdater\\Program.cs",
-              "RelativeToolTip": "CurrencyUpdater\\Program.cs",
-              "ViewState": "AQIAACYAAAAAAAAAAAAWwDUAAAAjAAAA",
+              "DocumentIndex": 3,
+              "Title": "FormAutentificare.cs",
+              "DocumentMoniker": "C:\\GITHUB\\Client-Server\\Banca\\Banca\\FormAutentificare.cs",
+              "RelativeDocumentMoniker": "Banca\\FormAutentificare.cs",
+              "ToolTip": "C:\\GITHUB\\Client-Server\\Banca\\Banca\\FormAutentificare.cs",
+              "RelativeToolTip": "Banca\\FormAutentificare.cs",
+              "ViewState": "AQIAAAwBAAAAAAAAAAAWwBQBAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-31T18:19:15.119Z",
+              "WhenOpened": "2024-06-01T12:32:15.835Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "User.cs [Design]",
+              "DocumentMoniker": "C:\\GITHUB\\Client-Server\\Banca\\Banca\\User.cs",
+              "RelativeDocumentMoniker": "Banca\\User.cs",
+              "ToolTip": "C:\\GITHUB\\Client-Server\\Banca\\Banca\\User.cs [Design]",
+              "RelativeToolTip": "Banca\\User.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-01T12:10:16.086Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FormAutentificare.cs [Design]",
+              "DocumentMoniker": "C:\\GITHUB\\Client-Server\\Banca\\Banca\\FormAutentificare.cs",
+              "RelativeDocumentMoniker": "Banca\\FormAutentificare.cs",
+              "ToolTip": "C:\\GITHUB\\Client-Server\\Banca\\Banca\\FormAutentificare.cs [Design]",
+              "RelativeToolTip": "Banca\\FormAutentificare.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-01T12:10:09.473Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Tranzactie.cs [Design]",
+              "DocumentMoniker": "C:\\GITHUB\\Client-Server\\Banca\\Banca\\Tranzactie.cs",
+              "RelativeDocumentMoniker": "Banca\\Tranzactie.cs",
+              "ToolTip": "C:\\GITHUB\\Client-Server\\Banca\\Banca\\Tranzactie.cs [Design]",
+              "RelativeToolTip": "Banca\\Tranzactie.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T18:36:51.738Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "WebService.asmx.cs",
               "DocumentMoniker": "C:\\GITHUB\\Client-Server\\Client-Server\\Client-Server\\WebService.asmx.cs",
               "RelativeDocumentMoniker": "..\\Client-Server\\Client-Server\\WebService.asmx.cs",
               "ToolTip": "C:\\GITHUB\\Client-Server\\Client-Server\\Client-Server\\WebService.asmx.cs",
               "RelativeToolTip": "..\\Client-Server\\Client-Server\\WebService.asmx.cs",
-              "ViewState": "AQIAAAoBAAAAAAAAAAAcwHIBAAAAAAAA",
+              "ViewState": "AQIAAJ8BAAAAAAAAAAAmwLcBAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-31T13:54:05.768Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-31T13:54:05.768Z"
             }
           ]
         }

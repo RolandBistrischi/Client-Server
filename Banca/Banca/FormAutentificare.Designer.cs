@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAutentificare));
             this.panelLogin = new System.Windows.Forms.Panel();
             this.buttonSignUppanelLogin = new System.Windows.Forms.Button();
             this.buttonLogin = new System.Windows.Forms.Button();
@@ -51,12 +52,15 @@
             this.textBoxCNPSignUp = new System.Windows.Forms.TextBox();
             this.textBoxTelefonSignUp = new System.Windows.Forms.TextBox();
             this.labelTelefonSignUp = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelLogin.SuspendLayout();
             this.panelSignUp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelLogin
             // 
+            this.panelLogin.Controls.Add(this.pictureBox1);
             this.panelLogin.Controls.Add(this.buttonSignUppanelLogin);
             this.panelLogin.Controls.Add(this.buttonLogin);
             this.panelLogin.Controls.Add(this.textBoxPrenumeLogin);
@@ -67,33 +71,36 @@
             this.panelLogin.Controls.Add(this.labelNumeLogin);
             this.panelLogin.Location = new System.Drawing.Point(0, 31);
             this.panelLogin.Name = "panelLogin";
-            this.panelLogin.Size = new System.Drawing.Size(440, 384);
+            this.panelLogin.Size = new System.Drawing.Size(440, 539);
             this.panelLogin.TabIndex = 0;
             this.panelLogin.Visible = false;
             // 
             // buttonSignUppanelLogin
             // 
-            this.buttonSignUppanelLogin.Location = new System.Drawing.Point(226, 242);
+            this.buttonSignUppanelLogin.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.buttonSignUppanelLogin.Location = new System.Drawing.Point(245, 403);
             this.buttonSignUppanelLogin.Name = "buttonSignUppanelLogin";
             this.buttonSignUppanelLogin.Size = new System.Drawing.Size(152, 85);
             this.buttonSignUppanelLogin.TabIndex = 12;
             this.buttonSignUppanelLogin.Text = "Sign Up";
-            this.buttonSignUppanelLogin.UseVisualStyleBackColor = true;
+            this.buttonSignUppanelLogin.UseVisualStyleBackColor = false;
             this.buttonSignUppanelLogin.Click += new System.EventHandler(this.buttonSignUppanelLogin_Click);
             // 
             // buttonLogin
             // 
-            this.buttonLogin.Location = new System.Drawing.Point(30, 242);
+            this.buttonLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.buttonLogin.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.buttonLogin.Location = new System.Drawing.Point(25, 403);
             this.buttonLogin.Name = "buttonLogin";
             this.buttonLogin.Size = new System.Drawing.Size(152, 85);
             this.buttonLogin.TabIndex = 9;
             this.buttonLogin.Text = "Login";
-            this.buttonLogin.UseVisualStyleBackColor = true;
+            this.buttonLogin.UseVisualStyleBackColor = false;
             this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
             // 
             // textBoxPrenumeLogin
             // 
-            this.textBoxPrenumeLogin.Location = new System.Drawing.Point(162, 83);
+            this.textBoxPrenumeLogin.Location = new System.Drawing.Point(162, 236);
             this.textBoxPrenumeLogin.Name = "textBoxPrenumeLogin";
             this.textBoxPrenumeLogin.Size = new System.Drawing.Size(216, 22);
             this.textBoxPrenumeLogin.TabIndex = 7;
@@ -101,15 +108,15 @@
             // labelPrenumeLogin
             // 
             this.labelPrenumeLogin.AutoSize = true;
-            this.labelPrenumeLogin.Location = new System.Drawing.Point(43, 86);
+            this.labelPrenumeLogin.Location = new System.Drawing.Point(25, 216);
             this.labelPrenumeLogin.Name = "labelPrenumeLogin";
-            this.labelPrenumeLogin.Size = new System.Drawing.Size(65, 17);
+            this.labelPrenumeLogin.Size = new System.Drawing.Size(61, 16);
             this.labelPrenumeLogin.TabIndex = 6;
             this.labelPrenumeLogin.Text = "Prenume";
             // 
             // textBoxCNPLogin
             // 
-            this.textBoxCNPLogin.Location = new System.Drawing.Point(162, 145);
+            this.textBoxCNPLogin.Location = new System.Drawing.Point(162, 302);
             this.textBoxCNPLogin.Name = "textBoxCNPLogin";
             this.textBoxCNPLogin.Size = new System.Drawing.Size(216, 22);
             this.textBoxCNPLogin.TabIndex = 3;
@@ -117,15 +124,15 @@
             // labelCNPLogin
             // 
             this.labelCNPLogin.AutoSize = true;
-            this.labelCNPLogin.Location = new System.Drawing.Point(43, 148);
+            this.labelCNPLogin.Location = new System.Drawing.Point(22, 302);
             this.labelCNPLogin.Name = "labelCNPLogin";
-            this.labelCNPLogin.Size = new System.Drawing.Size(36, 17);
+            this.labelCNPLogin.Size = new System.Drawing.Size(35, 16);
             this.labelCNPLogin.TabIndex = 2;
             this.labelCNPLogin.Text = "CNP";
             // 
             // textBoxNumeLogin
             // 
-            this.textBoxNumeLogin.Location = new System.Drawing.Point(162, 21);
+            this.textBoxNumeLogin.Location = new System.Drawing.Point(162, 189);
             this.textBoxNumeLogin.Name = "textBoxNumeLogin";
             this.textBoxNumeLogin.Size = new System.Drawing.Size(216, 22);
             this.textBoxNumeLogin.TabIndex = 1;
@@ -133,9 +140,9 @@
             // labelNumeLogin
             // 
             this.labelNumeLogin.AutoSize = true;
-            this.labelNumeLogin.Location = new System.Drawing.Point(43, 24);
+            this.labelNumeLogin.Location = new System.Drawing.Point(25, 189);
             this.labelNumeLogin.Name = "labelNumeLogin";
-            this.labelNumeLogin.Size = new System.Drawing.Size(45, 17);
+            this.labelNumeLogin.Size = new System.Drawing.Size(43, 16);
             this.labelNumeLogin.TabIndex = 0;
             this.labelNumeLogin.Text = "Nume";
             // 
@@ -162,12 +169,13 @@
             // 
             // buttonBack
             // 
+            this.buttonBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.buttonBack.Location = new System.Drawing.Point(58, 480);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(152, 85);
             this.buttonBack.TabIndex = 24;
             this.buttonBack.Text = "Back";
-            this.buttonBack.UseVisualStyleBackColor = true;
+            this.buttonBack.UseVisualStyleBackColor = false;
             this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
             // 
             // textBoxSoldSignUp
@@ -179,12 +187,13 @@
             // 
             // buttonSignUppanelSignUp
             // 
+            this.buttonSignUppanelSignUp.BackColor = System.Drawing.SystemColors.GrayText;
             this.buttonSignUppanelSignUp.Location = new System.Drawing.Point(266, 480);
             this.buttonSignUppanelSignUp.Name = "buttonSignUppanelSignUp";
             this.buttonSignUppanelSignUp.Size = new System.Drawing.Size(152, 85);
             this.buttonSignUppanelSignUp.TabIndex = 10;
             this.buttonSignUppanelSignUp.Text = "Sign Up";
-            this.buttonSignUppanelSignUp.UseVisualStyleBackColor = true;
+            this.buttonSignUppanelSignUp.UseVisualStyleBackColor = false;
             this.buttonSignUppanelSignUp.Click += new System.EventHandler(this.buttonSignUppanelSignUp_Click);
             // 
             // labelSoldSignUp
@@ -192,7 +201,7 @@
             this.labelSoldSignUp.AutoSize = true;
             this.labelSoldSignUp.Location = new System.Drawing.Point(35, 276);
             this.labelSoldSignUp.Name = "labelSoldSignUp";
-            this.labelSoldSignUp.Size = new System.Drawing.Size(36, 17);
+            this.labelSoldSignUp.Size = new System.Drawing.Size(35, 16);
             this.labelSoldSignUp.TabIndex = 22;
             this.labelSoldSignUp.Text = "Sold";
             // 
@@ -217,7 +226,7 @@
             this.labelNumeSignUp.AutoSize = true;
             this.labelNumeSignUp.Location = new System.Drawing.Point(35, 27);
             this.labelNumeSignUp.Name = "labelNumeSignUp";
-            this.labelNumeSignUp.Size = new System.Drawing.Size(45, 17);
+            this.labelNumeSignUp.Size = new System.Drawing.Size(43, 16);
             this.labelNumeSignUp.TabIndex = 13;
             this.labelNumeSignUp.Text = "Nume";
             // 
@@ -233,7 +242,7 @@
             this.labelCNPSignUp.AutoSize = true;
             this.labelCNPSignUp.Location = new System.Drawing.Point(35, 151);
             this.labelCNPSignUp.Name = "labelCNPSignUp";
-            this.labelCNPSignUp.Size = new System.Drawing.Size(36, 17);
+            this.labelCNPSignUp.Size = new System.Drawing.Size(35, 16);
             this.labelCNPSignUp.TabIndex = 15;
             this.labelCNPSignUp.Text = "CNP";
             // 
@@ -242,7 +251,7 @@
             this.labelPrenumeSignUp.AutoSize = true;
             this.labelPrenumeSignUp.Location = new System.Drawing.Point(35, 89);
             this.labelPrenumeSignUp.Name = "labelPrenumeSignUp";
-            this.labelPrenumeSignUp.Size = new System.Drawing.Size(65, 17);
+            this.labelPrenumeSignUp.Size = new System.Drawing.Size(61, 16);
             this.labelPrenumeSignUp.TabIndex = 19;
             this.labelPrenumeSignUp.Text = "Prenume";
             // 
@@ -265,9 +274,21 @@
             this.labelTelefonSignUp.AutoSize = true;
             this.labelTelefonSignUp.Location = new System.Drawing.Point(35, 213);
             this.labelTelefonSignUp.Name = "labelTelefonSignUp";
-            this.labelTelefonSignUp.Size = new System.Drawing.Size(56, 17);
+            this.labelTelefonSignUp.Size = new System.Drawing.Size(53, 16);
             this.labelTelefonSignUp.TabIndex = 17;
             this.labelTelefonSignUp.Text = "Telefon";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
+            this.pictureBox1.Location = new System.Drawing.Point(115, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(204, 133);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 13;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // FormAutentificare
             // 
@@ -283,6 +304,7 @@
             this.panelLogin.PerformLayout();
             this.panelSignUp.ResumeLayout(false);
             this.panelSignUp.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -312,6 +334,7 @@
         private System.Windows.Forms.TextBox textBoxCNPSignUp;
         private System.Windows.Forms.TextBox textBoxTelefonSignUp;
         private System.Windows.Forms.Label labelTelefonSignUp;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

@@ -23,3 +23,6 @@ C:\GITHUB\Client-Server\Banca\Banca\obj\Debug\Banca.csproj.CoreCompileInputs.cac
 C:\GITHUB\Client-Server\Banca\Banca\obj\Debug\Banca.exe
 C:\GITHUB\Client-Server\Banca\Banca\obj\Debug\Banca.pdb
 >>>>>>> Stashed changes
+C:\GITHUB\Client-Server\Banca\Banca\obj\Debug\Banca.FormAutentificare.resources
+C:\GITHUB\Client-Server\Banca\Banca\obj\Debug\Banca.FormUser.resources
+C:\GITHUB\Client-Server\Banca\Banca\obj\Debug\Banca.Tranzactie.resources

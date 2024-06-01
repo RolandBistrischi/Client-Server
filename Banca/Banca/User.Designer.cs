@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormUser));
             this.panelUser = new System.Windows.Forms.Panel();
             this.buttonCautadupaCNP = new System.Windows.Forms.Button();
             this.textBoxSold = new System.Windows.Forms.TextBox();
@@ -46,10 +47,7 @@
             this.userToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.valuteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-<<<<<<< Updated upstream:Banca/Banca/User.Designer.cs
             this.tranzactieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-=======
->>>>>>> Stashed changes:Banca/Banca/Form1.Designer.cs
             this.panelValute = new System.Windows.Forms.Panel();
             this.buttonAdaugaValuta = new System.Windows.Forms.Button();
             this.textBoxDenumire = new System.Windows.Forms.TextBox();
@@ -62,9 +60,11 @@
             this.labelTara = new System.Windows.Forms.Label();
             this.textBoxCod = new System.Windows.Forms.TextBox();
             this.labelCod = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelUser.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.panelValute.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelUser
@@ -86,16 +86,6 @@
             this.panelUser.Name = "panelUser";
             this.panelUser.Size = new System.Drawing.Size(530, 583);
             this.panelUser.TabIndex = 1;
-            // 
-            // buttonCautadupaCNP
-            // 
-            this.buttonCautadupaCNP.Location = new System.Drawing.Point(337, 480);
-            this.buttonCautadupaCNP.Name = "buttonCautadupaCNP";
-            this.buttonCautadupaCNP.Size = new System.Drawing.Size(152, 85);
-            this.buttonCautadupaCNP.TabIndex = 12;
-            this.buttonCautadupaCNP.Text = "Cauta User";
-            this.buttonCautadupaCNP.UseVisualStyleBackColor = true;
-            this.buttonCautadupaCNP.Click += new System.EventHandler(this.buttonCautadupaCNP_Click);
             // 
             // buttonCautadupaCNP
             // 
@@ -237,26 +227,20 @@
             // modificaToolStripMenuItem
             // 
             this.modificaToolStripMenuItem.Name = "modificaToolStripMenuItem";
-<<<<<<< Updated upstream:Banca/Banca/User.Designer.cs
-            this.modificaToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
+            this.modificaToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
             this.modificaToolStripMenuItem.Text = "Modifica";
             this.modificaToolStripMenuItem.Click += new System.EventHandler(this.modificaToolStripMenuItem_Click);
             // 
             // tranzactieToolStripMenuItem
             // 
             this.tranzactieToolStripMenuItem.Name = "tranzactieToolStripMenuItem";
-            this.tranzactieToolStripMenuItem.Size = new System.Drawing.Size(88, 24);
+            this.tranzactieToolStripMenuItem.Size = new System.Drawing.Size(90, 24);
             this.tranzactieToolStripMenuItem.Text = "Tranzactie";
             this.tranzactieToolStripMenuItem.Click += new System.EventHandler(this.tranzactieToolStripMenuItem_Click);
             // 
-=======
-            this.modificaToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
-            this.modificaToolStripMenuItem.Text = "Modifica";
-            this.modificaToolStripMenuItem.Click += new System.EventHandler(this.modificaToolStripMenuItem_Click);
-            // 
->>>>>>> Stashed changes:Banca/Banca/Form1.Designer.cs
             // panelValute
             // 
+            this.panelValute.Controls.Add(this.pictureBox1);
             this.panelValute.Controls.Add(this.buttonAdaugaValuta);
             this.panelValute.Controls.Add(this.textBoxDenumire);
             this.panelValute.Controls.Add(this.labelDenumire);
@@ -285,7 +269,7 @@
             // 
             // textBoxDenumire
             // 
-            this.textBoxDenumire.Location = new System.Drawing.Point(205, 122);
+            this.textBoxDenumire.Location = new System.Drawing.Point(205, 204);
             this.textBoxDenumire.Name = "textBoxDenumire";
             this.textBoxDenumire.Size = new System.Drawing.Size(216, 22);
             this.textBoxDenumire.TabIndex = 17;
@@ -293,7 +277,7 @@
             // labelDenumire
             // 
             this.labelDenumire.AutoSize = true;
-            this.labelDenumire.Location = new System.Drawing.Point(48, 124);
+            this.labelDenumire.Location = new System.Drawing.Point(48, 204);
             this.labelDenumire.Name = "labelDenumire";
             this.labelDenumire.Size = new System.Drawing.Size(65, 16);
             this.labelDenumire.TabIndex = 16;
@@ -301,7 +285,7 @@
             // 
             // textBoxCursBaza
             // 
-            this.textBoxCursBaza.Location = new System.Drawing.Point(205, 344);
+            this.textBoxCursBaza.Location = new System.Drawing.Point(205, 369);
             this.textBoxCursBaza.Name = "textBoxCursBaza";
             this.textBoxCursBaza.Size = new System.Drawing.Size(216, 22);
             this.textBoxCursBaza.TabIndex = 15;
@@ -309,7 +293,7 @@
             // labelCursBaza
             // 
             this.labelCursBaza.AutoSize = true;
-            this.labelCursBaza.Location = new System.Drawing.Point(48, 343);
+            this.labelCursBaza.Location = new System.Drawing.Point(48, 369);
             this.labelCursBaza.Name = "labelCursBaza";
             this.labelCursBaza.Size = new System.Drawing.Size(128, 16);
             this.labelCursBaza.TabIndex = 14;
@@ -317,7 +301,7 @@
             // 
             // textBoxSimbol
             // 
-            this.textBoxSimbol.Location = new System.Drawing.Point(205, 196);
+            this.textBoxSimbol.Location = new System.Drawing.Point(205, 255);
             this.textBoxSimbol.Name = "textBoxSimbol";
             this.textBoxSimbol.Size = new System.Drawing.Size(216, 22);
             this.textBoxSimbol.TabIndex = 13;
@@ -325,7 +309,7 @@
             // labelSimbol
             // 
             this.labelSimbol.AutoSize = true;
-            this.labelSimbol.Location = new System.Drawing.Point(48, 198);
+            this.labelSimbol.Location = new System.Drawing.Point(61, 258);
             this.labelSimbol.Name = "labelSimbol";
             this.labelSimbol.Size = new System.Drawing.Size(49, 16);
             this.labelSimbol.TabIndex = 12;
@@ -333,7 +317,7 @@
             // 
             // textBoxTara
             // 
-            this.textBoxTara.Location = new System.Drawing.Point(205, 270);
+            this.textBoxTara.Location = new System.Drawing.Point(205, 312);
             this.textBoxTara.Name = "textBoxTara";
             this.textBoxTara.Size = new System.Drawing.Size(216, 22);
             this.textBoxTara.TabIndex = 11;
@@ -341,7 +325,7 @@
             // labelTara
             // 
             this.labelTara.AutoSize = true;
-            this.labelTara.Location = new System.Drawing.Point(48, 272);
+            this.labelTara.Location = new System.Drawing.Point(61, 312);
             this.labelTara.Name = "labelTara";
             this.labelTara.Size = new System.Drawing.Size(36, 16);
             this.labelTara.TabIndex = 10;
@@ -349,7 +333,7 @@
             // 
             // textBoxCod
             // 
-            this.textBoxCod.Location = new System.Drawing.Point(205, 48);
+            this.textBoxCod.Location = new System.Drawing.Point(205, 142);
             this.textBoxCod.Name = "textBoxCod";
             this.textBoxCod.Size = new System.Drawing.Size(216, 22);
             this.textBoxCod.TabIndex = 9;
@@ -357,17 +341,24 @@
             // labelCod
             // 
             this.labelCod.AutoSize = true;
-            this.labelCod.Location = new System.Drawing.Point(48, 50);
+            this.labelCod.Location = new System.Drawing.Point(48, 151);
             this.labelCod.Name = "labelCod";
             this.labelCod.Size = new System.Drawing.Size(77, 16);
             this.labelCod.TabIndex = 8;
             this.labelCod.Text = "Cod Valutar";
             // 
-<<<<<<< Updated upstream:Banca/Banca/User.Designer.cs
+            // pictureBox1
+            // 
+            this.pictureBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.SplitButton;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(3, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(484, 136);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 18;
+            this.pictureBox1.TabStop = false;
+            // 
             // FormUser
-=======
-            // Form1
->>>>>>> Stashed changes:Banca/Banca/Form1.Designer.cs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -385,6 +376,7 @@
             this.menuStrip1.PerformLayout();
             this.panelValute.ResumeLayout(false);
             this.panelValute.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -423,5 +415,6 @@
         private System.Windows.Forms.Label labelTara;
         private System.Windows.Forms.TextBox textBoxCod;
         private System.Windows.Forms.Label labelCod;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

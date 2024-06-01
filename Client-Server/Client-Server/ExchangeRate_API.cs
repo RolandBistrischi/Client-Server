@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Client_Server;
 using Newtonsoft.Json;
 
 namespace ExchangeRate_API
@@ -64,6 +66,11 @@ namespace ExchangeRate_API
         public ConversionRate conversion_rates
         {
             get; set;
+        }
+
+        internal List<Valute> GetExchangeRates()
+        {
+            throw new NotImplementedException();
         }
     }
 
