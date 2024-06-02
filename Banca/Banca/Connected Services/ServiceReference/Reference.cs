@@ -391,6 +391,33 @@ namespace Banca.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetExchangeRate", ReplyAction="*")]
         System.Threading.Tasks.Task<decimal> GetExchangeRateAsync(int idValuta1, int idValuta2);
+        
+        // CODEGEN: Generating message contract since element name denumire from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetValoareValuta", ReplyAction="*")]
+        Banca.ServiceReference.GetValoareValutaResponse GetValoareValuta(Banca.ServiceReference.GetValoareValutaRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetValoareValuta", ReplyAction="*")]
+        System.Threading.Tasks.Task<Banca.ServiceReference.GetValoareValutaResponse> GetValoareValutaAsync(Banca.ServiceReference.GetValoareValutaRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ActualizareCursValutar", ReplyAction="*")]
+        void ActualizareCursValutar();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ActualizareCursValutar", ReplyAction="*")]
+        System.Threading.Tasks.Task ActualizareCursValutarAsync();
+        
+        // CODEGEN: Generating message contract since element name ObtineValuteExistenteResult from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ObtineValuteExistente", ReplyAction="*")]
+        Banca.ServiceReference.ObtineValuteExistenteResponse ObtineValuteExistente(Banca.ServiceReference.ObtineValuteExistenteRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ObtineValuteExistente", ReplyAction="*")]
+        System.Threading.Tasks.Task<Banca.ServiceReference.ObtineValuteExistenteResponse> ObtineValuteExistenteAsync(Banca.ServiceReference.ObtineValuteExistenteRequest request);
+        
+        // CODEGEN: Generating message contract since element name cod_valutar from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateValoareValuta", ReplyAction="*")]
+        Banca.ServiceReference.UpdateValoareValutaResponse UpdateValoareValuta(Banca.ServiceReference.UpdateValoareValutaRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateValoareValuta", ReplyAction="*")]
+        System.Threading.Tasks.Task<Banca.ServiceReference.UpdateValoareValutaResponse> UpdateValoareValutaAsync(Banca.ServiceReference.UpdateValoareValutaRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1076,6 +1103,207 @@ namespace Banca.ServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetValoareValutaRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetValoareValuta", Namespace="http://tempuri.org/", Order=0)]
+        public Banca.ServiceReference.GetValoareValutaRequestBody Body;
+        
+        public GetValoareValutaRequest() {
+        }
+        
+        public GetValoareValutaRequest(Banca.ServiceReference.GetValoareValutaRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetValoareValutaRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string denumire;
+        
+        public GetValoareValutaRequestBody() {
+        }
+        
+        public GetValoareValutaRequestBody(string denumire) {
+            this.denumire = denumire;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetValoareValutaResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetValoareValutaResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Banca.ServiceReference.GetValoareValutaResponseBody Body;
+        
+        public GetValoareValutaResponse() {
+        }
+        
+        public GetValoareValutaResponse(Banca.ServiceReference.GetValoareValutaResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetValoareValutaResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public decimal GetValoareValutaResult;
+        
+        public GetValoareValutaResponseBody() {
+        }
+        
+        public GetValoareValutaResponseBody(decimal GetValoareValutaResult) {
+            this.GetValoareValutaResult = GetValoareValutaResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class ObtineValuteExistenteRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ObtineValuteExistente", Namespace="http://tempuri.org/", Order=0)]
+        public Banca.ServiceReference.ObtineValuteExistenteRequestBody Body;
+        
+        public ObtineValuteExistenteRequest() {
+        }
+        
+        public ObtineValuteExistenteRequest(Banca.ServiceReference.ObtineValuteExistenteRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public partial class ObtineValuteExistenteRequestBody {
+        
+        public ObtineValuteExistenteRequestBody() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class ObtineValuteExistenteResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ObtineValuteExistenteResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Banca.ServiceReference.ObtineValuteExistenteResponseBody Body;
+        
+        public ObtineValuteExistenteResponse() {
+        }
+        
+        public ObtineValuteExistenteResponse(Banca.ServiceReference.ObtineValuteExistenteResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class ObtineValuteExistenteResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public Banca.ServiceReference.Valute[] ObtineValuteExistenteResult;
+        
+        public ObtineValuteExistenteResponseBody() {
+        }
+        
+        public ObtineValuteExistenteResponseBody(Banca.ServiceReference.Valute[] ObtineValuteExistenteResult) {
+            this.ObtineValuteExistenteResult = ObtineValuteExistenteResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class UpdateValoareValutaRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="UpdateValoareValuta", Namespace="http://tempuri.org/", Order=0)]
+        public Banca.ServiceReference.UpdateValoareValutaRequestBody Body;
+        
+        public UpdateValoareValutaRequest() {
+        }
+        
+        public UpdateValoareValutaRequest(Banca.ServiceReference.UpdateValoareValutaRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class UpdateValoareValutaRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string cod_valutar;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+        public decimal nouaValoare;
+        
+        public UpdateValoareValutaRequestBody() {
+        }
+        
+        public UpdateValoareValutaRequestBody(string cod_valutar, decimal nouaValoare) {
+            this.cod_valutar = cod_valutar;
+            this.nouaValoare = nouaValoare;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class UpdateValoareValutaResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="UpdateValoareValutaResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Banca.ServiceReference.UpdateValoareValutaResponseBody Body;
+        
+        public UpdateValoareValutaResponse() {
+        }
+        
+        public UpdateValoareValutaResponse(Banca.ServiceReference.UpdateValoareValutaResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class UpdateValoareValutaResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public bool UpdateValoareValutaResult;
+        
+        public UpdateValoareValutaResponseBody() {
+        }
+        
+        public UpdateValoareValutaResponseBody(bool UpdateValoareValutaResult) {
+            this.UpdateValoareValutaResult = UpdateValoareValutaResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface WebServiceSoapChannel : Banca.ServiceReference.WebServiceSoap, System.ServiceModel.IClientChannel {
     }
@@ -1367,6 +1595,89 @@ namespace Banca.ServiceReference {
         
         public System.Threading.Tasks.Task<decimal> GetExchangeRateAsync(int idValuta1, int idValuta2) {
             return base.Channel.GetExchangeRateAsync(idValuta1, idValuta2);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Banca.ServiceReference.GetValoareValutaResponse Banca.ServiceReference.WebServiceSoap.GetValoareValuta(Banca.ServiceReference.GetValoareValutaRequest request) {
+            return base.Channel.GetValoareValuta(request);
+        }
+        
+        public decimal GetValoareValuta(string denumire) {
+            Banca.ServiceReference.GetValoareValutaRequest inValue = new Banca.ServiceReference.GetValoareValutaRequest();
+            inValue.Body = new Banca.ServiceReference.GetValoareValutaRequestBody();
+            inValue.Body.denumire = denumire;
+            Banca.ServiceReference.GetValoareValutaResponse retVal = ((Banca.ServiceReference.WebServiceSoap)(this)).GetValoareValuta(inValue);
+            return retVal.Body.GetValoareValutaResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<Banca.ServiceReference.GetValoareValutaResponse> Banca.ServiceReference.WebServiceSoap.GetValoareValutaAsync(Banca.ServiceReference.GetValoareValutaRequest request) {
+            return base.Channel.GetValoareValutaAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<Banca.ServiceReference.GetValoareValutaResponse> GetValoareValutaAsync(string denumire) {
+            Banca.ServiceReference.GetValoareValutaRequest inValue = new Banca.ServiceReference.GetValoareValutaRequest();
+            inValue.Body = new Banca.ServiceReference.GetValoareValutaRequestBody();
+            inValue.Body.denumire = denumire;
+            return ((Banca.ServiceReference.WebServiceSoap)(this)).GetValoareValutaAsync(inValue);
+        }
+        
+        public void ActualizareCursValutar() {
+            base.Channel.ActualizareCursValutar();
+        }
+        
+        public System.Threading.Tasks.Task ActualizareCursValutarAsync() {
+            return base.Channel.ActualizareCursValutarAsync();
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Banca.ServiceReference.ObtineValuteExistenteResponse Banca.ServiceReference.WebServiceSoap.ObtineValuteExistente(Banca.ServiceReference.ObtineValuteExistenteRequest request) {
+            return base.Channel.ObtineValuteExistente(request);
+        }
+        
+        public Banca.ServiceReference.Valute[] ObtineValuteExistente() {
+            Banca.ServiceReference.ObtineValuteExistenteRequest inValue = new Banca.ServiceReference.ObtineValuteExistenteRequest();
+            inValue.Body = new Banca.ServiceReference.ObtineValuteExistenteRequestBody();
+            Banca.ServiceReference.ObtineValuteExistenteResponse retVal = ((Banca.ServiceReference.WebServiceSoap)(this)).ObtineValuteExistente(inValue);
+            return retVal.Body.ObtineValuteExistenteResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<Banca.ServiceReference.ObtineValuteExistenteResponse> Banca.ServiceReference.WebServiceSoap.ObtineValuteExistenteAsync(Banca.ServiceReference.ObtineValuteExistenteRequest request) {
+            return base.Channel.ObtineValuteExistenteAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<Banca.ServiceReference.ObtineValuteExistenteResponse> ObtineValuteExistenteAsync() {
+            Banca.ServiceReference.ObtineValuteExistenteRequest inValue = new Banca.ServiceReference.ObtineValuteExistenteRequest();
+            inValue.Body = new Banca.ServiceReference.ObtineValuteExistenteRequestBody();
+            return ((Banca.ServiceReference.WebServiceSoap)(this)).ObtineValuteExistenteAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Banca.ServiceReference.UpdateValoareValutaResponse Banca.ServiceReference.WebServiceSoap.UpdateValoareValuta(Banca.ServiceReference.UpdateValoareValutaRequest request) {
+            return base.Channel.UpdateValoareValuta(request);
+        }
+        
+        public bool UpdateValoareValuta(string cod_valutar, decimal nouaValoare) {
+            Banca.ServiceReference.UpdateValoareValutaRequest inValue = new Banca.ServiceReference.UpdateValoareValutaRequest();
+            inValue.Body = new Banca.ServiceReference.UpdateValoareValutaRequestBody();
+            inValue.Body.cod_valutar = cod_valutar;
+            inValue.Body.nouaValoare = nouaValoare;
+            Banca.ServiceReference.UpdateValoareValutaResponse retVal = ((Banca.ServiceReference.WebServiceSoap)(this)).UpdateValoareValuta(inValue);
+            return retVal.Body.UpdateValoareValutaResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<Banca.ServiceReference.UpdateValoareValutaResponse> Banca.ServiceReference.WebServiceSoap.UpdateValoareValutaAsync(Banca.ServiceReference.UpdateValoareValutaRequest request) {
+            return base.Channel.UpdateValoareValutaAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<Banca.ServiceReference.UpdateValoareValutaResponse> UpdateValoareValutaAsync(string cod_valutar, decimal nouaValoare) {
+            Banca.ServiceReference.UpdateValoareValutaRequest inValue = new Banca.ServiceReference.UpdateValoareValutaRequest();
+            inValue.Body = new Banca.ServiceReference.UpdateValoareValutaRequestBody();
+            inValue.Body.cod_valutar = cod_valutar;
+            inValue.Body.nouaValoare = nouaValoare;
+            return ((Banca.ServiceReference.WebServiceSoap)(this)).UpdateValoareValutaAsync(inValue);
         }
     }
 }

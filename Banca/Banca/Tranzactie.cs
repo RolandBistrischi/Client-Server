@@ -52,13 +52,13 @@ namespace Banca
 
             string iban = textBoxIBAN.Text.Trim();
 
-            if (!decimal.TryParse(textBoxSuma.Text.Trim(), out decimal sold) || sold < 0)
+            if (!decimal.TryParse(textBoxSuma.Text.Trim(), out decimal suma) || suma < 0)
             {
                 MessageBox.Show("Introduceți un sold valid.");
                 return;
             }
 
-            if (sold > utilizator_curent.Sold)
+            if (suma > utilizator_curent.Sold)
             {
                 MessageBox.Show("Aveti prea putini bani in cont.");
                 return;
@@ -70,16 +70,16 @@ namespace Banca
                 MessageBox.Show("Acest IBAN nu exista in baza de date.");
             }
 
-            if (result == DialogResult.No)//(client.tranzactie())
+            if (client.Tranzactie(utilizator_curent, iban, suma)) //(result == DialogResult.No)
             {
                 MessageBox.Show("S-a putut efectua tranzactia.");
-
             }
             else
             {
                 MessageBox.Show("Nu s-a putut efectua tranzactia.");
             }
-
+            textBoxIBAN.Clear();
+            textBoxSuma.Clear();
         }
 
 

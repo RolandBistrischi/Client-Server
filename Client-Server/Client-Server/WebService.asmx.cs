@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Threading;
 using System.Web.Services;
 using ExchangeRate_API;
 
@@ -20,20 +19,13 @@ namespace Client_Server
     {
         private readonly string connectionString = "Data Source=DESKTOP-6ICN792;Initial Catalog = BancaDatabase; Integrated Security = True";
 
-        private readonly Timer _timer;
-        API_Obj api;
+        //private readonly Timer _timer;
+        private API_Obj valuteActualizate;
+        private List<Valute> valuteExistente;
+
 
         public WebService()
         {
-            //connectionString = GetConnectionString();
-            // Inițializează și configurează timer-ul
-            /*timer = new Timer
-            {
-                Interval = 12 * 60 * 60 * 1000 // Intervalul în milisecunde (12 ore)
-            };
-            timer.Elapsed += TimerElapsed;*/
-
-            _timer = new Timer(RunTask, null, TimeSpan.Zero, TimeSpan.FromHours(12));
         }
 
         [WebMethod]
@@ -364,7 +356,7 @@ namespace Client_Server
                             {
                                 Utilizator utilizator = new Utilizator
                                 {
-                                    IdUser = Convert.ToInt32(reader ["id"]),
+                                    IdUser = Convert.ToInt32(reader ["id_user"]),
                                     Sold = reader ["sold"] != DBNull.Value ? Convert.ToDecimal(reader ["sold"]) : 0,
                                     Iban = iban,
                                     Nume = reader ["nume"].ToString(),
@@ -424,7 +416,7 @@ namespace Client_Server
                     {
                         try
                         {
-                            string insertQuery = "INSERT INTO tranzactii (Id_user_sursa, Id_user_destinatie, Id_valuta, suma, data_tranzactie, stare_tranzactie) VALUES (@id_user_sursa, @id_user_destinatie, @id_valuta, @suma, GETDATE(), 'In curs')";
+                            string insertQuery = "INSERT INTO Tranzactii (Id_user_sursa, Id_user_destinatie, Id_valuta, suma, data_tranzactie, stare_tranzactie) VALUES (@id_user_sursa, @id_user_destinatie, @id_valuta, @suma, GETDATE(), 'In curs')";
                             using (SqlCommand command = new SqlCommand(insertQuery, connection, transaction))
                             {
                                 command.Parameters.AddWithValue("@id_user_sursa", utilizator.IdUser);
@@ -436,7 +428,7 @@ namespace Client_Server
 
                             // Actualizează soldul utilizatorului sursă
                             decimal newSoldSursa = utilizator.Sold - pret;
-                            string updateQuerySursa = "UPDATE Useri SET sold = @sold WHERE id = @id";
+                            string updateQuerySursa = "UPDATE Useri SET sold = @sold WHERE id_user = @id";
                             using (SqlCommand command = new SqlCommand(updateQuerySursa, connection, transaction))
                             {
                                 command.Parameters.AddWithValue("@sold", newSoldSursa);
@@ -445,7 +437,7 @@ namespace Client_Server
                             }
 
                             // Actualizează soldul utilizatorului destinatar
-                            string updateQueryDestinatie = "UPDATE Useri SET sold = sold + @suma WHERE id = @id";
+                            string updateQueryDestinatie = "UPDATE Useri SET sold = sold + @suma WHERE id_user = @id";
                             using (SqlCommand command = new SqlCommand(updateQueryDestinatie, connection, transaction))
                             {
                                 command.Parameters.AddWithValue("@suma", sumaInValutaDestinatar);
@@ -464,96 +456,64 @@ namespace Client_Server
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 return false;
             }
             return false;
         }
 
-
-
         [WebMethod]
         public decimal GetExchangeRate( int idValuta1, int idValuta2 )
         {
-            throw new NotImplementedException();
-
-            return -1;
-        }
-        /* [WebMethod]
-         public string ExecutePhp()
-         {
-             try
-             {
-                 // Calea relativă la directorul aplicației pentru executabilul PHP
-                 string phpPath = HttpContext.Current.Server.MapPath("~/cursbnr/php.exe");
-
-                 // Calea relativă la directorul aplicației pentru fișierul PHP care trebuie executat
-                 string scriptPath = HttpContext.Current.Server.MapPath("~/cursbnr/CursBNR.php");
-
-                 ProcessStartInfo processStartInfo = new ProcessStartInfo
-                 {
-                     FileName = phpPath,
-                     Arguments = scriptPath,
-                     RedirectStandardOutput = true,
-                     RedirectStandardError = true,
-                     UseShellExecute = false,
-                     CreateNoWindow = true
-                 };
-
-                 using (Process process = new Process { StartInfo = processStartInfo })
-                 {
-                     process.Start();
-
-                     string output = process.StandardOutput.ReadToEnd();
-                     string error = process.StandardError.ReadToEnd();
-
-                     process.WaitForExit();
-
-                     if (process.ExitCode == 0)
-                     {
-                         return output;
-                     }
-                     else
-                     {
-                         return $"Error: {error}";
-                     }
-                 }
-             }
-             catch (Exception ex)
-             {
-                 return $"Exception: {ex.Message}";
-             }
-         }
-
-         private void TimerElapsed( object sender, ElapsedEventArgs e )
-         {
-             ExecutePhp(); // Apelarea funcției ExecutePhp la intervale de 12 ore
-         }
-
-         [WebMethod]
-         public void StartTimer()
-         {
-             timer.Start();
-         }
-
-         [WebMethod]
-         public void StopTimer()
-         {
-             timer.Stop();
-         }*/
-
-        private void RunTask( object state )
-        {
             try
             {
-                api = Rates.Import();
+                decimal cursValuta1 = GetCursValutarById(idValuta1);
+                decimal cursValuta2 = GetCursValutarById(idValuta2);
+
+                if (cursValuta1 <= 0 || cursValuta2 <= 0)
+                    throw new Exception("Cursul valutar pentru una dintre valute nu a fost găsit.");
+
+                return cursValuta1 / cursValuta2;
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("A apărut o excepție: " + ex.Message);
+                return -1;
             }
         }
+        private decimal GetCursValutarById( int idValuta )
+        {
+            string query = "SELECT curs_de_schimb FROM Valute WHERE id_valuta = @IdValuta";
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@IdValuta", idValuta);
+                        object result = command.ExecuteScalar();
+                        if (result != null && decimal.TryParse(result.ToString(), out decimal cursValutar))
+                        {
+                            return cursValutar;
+                        }
+                        else
+                        {
+                            return -1;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("A apărut o excepție: " + ex.Message);
+                return -1;
+            }
+        }
+
+
         private string GetConnectionString()
         {
             ConnectionStringSettingsCollection connectionStrings = ConfigurationManager.ConnectionStrings;
@@ -577,5 +537,216 @@ namespace Client_Server
             //  return ConfigurationManager.ConnectionStrings [connectionName].ConnectionString;
             throw new Exception("Nu s-a găsit niciun connection string potrivit pentru acest calculator.");
         }
+
+
+
+        [WebMethod]
+        public decimal GetValoareValuta( string denumire )
+        {
+            if (string.IsNullOrWhiteSpace(denumire))
+                return -1;
+
+            string query = "SELECT curs_de_schimb FROM Valute WHERE denumire = @Denumire";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Denumire", denumire.Trim());
+
+                        object result = command.ExecuteScalar();
+
+                        if (result != null)
+                        {
+                            decimal cursDeSchimb = Convert.ToDecimal(result);
+                            return cursDeSchimb;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("A apărut o excepție: " + ex.Message);
+            }
+
+            return -1;
+        }
+
+        [WebMethod]
+        public void ActualizareCursValutar()
+        {
+            valuteActualizate = Rates.Import();
+            if (valuteExistente == null)
+                valuteExistente = ObtineValuteExistente();
+
+            Dictionary<string, double> valuteList = valuteActualizate.GetConversionRate();
+
+            if (valuteList == null || valuteExistente == null)
+                throw new Exception("Nu am putut obtine valutele.");
+
+            List<Valute> actualizare = new List<Valute>();
+
+            foreach (KeyValuePair<string, double> valuta in valuteList)
+            {
+                Valute valutaExistenta = valuteExistente.Find(v => v.CodValutar == valuta.Key);
+
+                if (valutaExistenta != null && valutaExistenta.CursdeSchimb != valuta.Value)
+                {
+                    valutaExistenta.CursdeSchimb = valuta.Value;
+                    actualizare.Add(valutaExistenta);
+                }
+            }
+            if (actualizare.Count == 0)
+                return;
+            UpdateCursValutar(actualizare);
+        }
+
+        private void UpdateCursValutar( string codValutar, double cursDeSchimb )
+        {
+            string query = "UPDATE Valute SET curs_de_schimb = @CursDeSchimb WHERE cod_valutar = @CodValutar";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@CursDeSchimb", cursDeSchimb);
+                        command.Parameters.AddWithValue("@CodValutar", codValutar.Trim());
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("A apărut o excepție: " + ex.Message);
+            }
+        }
+        private void UpdateCursValutar( List<Valute> actualizare )
+        {
+            string query = "UPDATE Valute SET curs_de_schimb = @CursDeSchimb WHERE cod_valutar = @CodValutar";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (SqlTransaction transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        foreach (Valute valuta in actualizare)
+                        {
+                            using (SqlCommand command = new SqlCommand(query, connection, transaction))
+                            {
+                                command.Parameters.AddWithValue("@CursDeSchimb", valuta.CursdeSchimb);
+                                command.Parameters.AddWithValue("@CodValutar", valuta.CodValutar);
+                                command.ExecuteNonQuery();
+                            }
+                        }
+
+                        transaction.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
+            }
+
+            valuteExistente = actualizare;
+        }
+
+        [WebMethod]
+        public List<Valute> ObtineValuteExistente()
+        {
+            List<Valute> valute = new List<Valute>();
+            string query = "SELECT * FROM Valute";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                valute.Add(new Valute
+                                {
+                                    IdValuta = Convert.ToInt32(reader ["id_valuta"]),
+                                    CodValutar = reader ["cod_valutar"].ToString(),
+                                    Denumire = reader ["denumire"].ToString(),
+                                    Simbol = reader ["simbol"].ToString(),
+                                    Tara = reader ["tara"].ToString(),
+                                    CursdeSchimb = Convert.ToDouble(reader ["curs_de_schimb"])
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("A apărut o excepție: " + ex.Message);
+            }
+
+            return valute;
+        }
+
+        [WebMethod]
+        public bool UpdateValoareValuta( string cod_valutar, decimal nouaValoare )
+        {
+            if (string.IsNullOrWhiteSpace(cod_valutar) || nouaValoare <= 0)
+            {
+                return false;
+            }
+
+            string query = "UPDATE Valute SET curs_de_schimb = @NouaValoare WHERE cod_valutar = @Denumire";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@NouaValoare", nouaValoare);
+                        command.Parameters.AddWithValue("@Denumire", cod_valutar.Trim());
+
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            Console.WriteLine("Valoarea valutei a fost actualizată cu succes.");
+                            return true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Nu s-au găsit înregistrări pentru valuta specificată.");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("A apărut o excepție: " + ex.Message);
+            }
+
+            return false;
+        }
+
+
     }
 }

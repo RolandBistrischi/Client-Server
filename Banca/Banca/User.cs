@@ -141,8 +141,11 @@ namespace Banca
                     DataCreare = data,
                     IdValuta = id_valuta
                 };
-                client.AdugareUser(utilizator);
-                MessageBox.Show("Utilizator adaugat.");
+                if (client.AdugareUser(utilizator))
+                    MessageBox.Show("Utilizator adaugat.");
+                else
+                    MessageBox.Show("Eroare la adaugarea utilizatorului sau utilizatorul exista in maza de date.");
+
                 return;
             }
 
@@ -234,7 +237,7 @@ namespace Banca
             // Dimensionează fereastra la dimensiunea panelului și plasează panelul în colțul stânga-sus
             Size = panel.Size;
             panel.Location = new Point(0, menuStrip1.Height);
-            MinimumSize = new Size(panel.Width+50, panel.Height + extraHeight);
+            MinimumSize = new Size(panel.Width + 50, panel.Height + extraHeight);
         }
 
 
@@ -291,7 +294,7 @@ namespace Banca
             {
                 formTranzactie = new Tranzactie(utilizator)
                 {
-                    MinimumSize = new Size(520 , 500 )
+                    MinimumSize = new Size(520, 500)
                 };
                 formTranzactie.Size = formTranzactie.MinimumSize;
                 formTranzactie.FormClosed += ( sender, e ) => { formTranzactie = null; }; // Resetare referință când formularul este închis
