@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
 using Newtonsoft.Json;
 
 namespace ExchangeRate_API
@@ -15,7 +17,7 @@ namespace ExchangeRate_API
                 {
                     string json = webClient.DownloadString(URLString);
                     API_Obj Test = JsonConvert.DeserializeObject<API_Obj>(json);
-                    Console.WriteLine("Succes.");
+                    //Console.WriteLine("Succes.");
                     return Test;
                 }
             }
@@ -65,7 +67,25 @@ namespace ExchangeRate_API
         {
             get; set;
         }
+
+        public Dictionary<string, double> GetConversionRate()
+        {
+            Type type = typeof(ConversionRate);
+            PropertyInfo [] properties = type.GetProperties();
+            Dictionary<string, double> conversion = new Dictionary<string, double>();
+            foreach (PropertyInfo property in properties)
+            {
+                if (property.PropertyType == typeof(double))
+                {
+                    string name = property.Name;
+                    double value = (double)property.GetValue(conversion_rates);
+                    conversion.Add(name, value);
+                }
+            }
+            return conversion;
+        }
     }
+
 
     public class ConversionRate
     {

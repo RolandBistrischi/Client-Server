@@ -112,10 +112,16 @@
     <None Include="Connected Services\ServiceReference\Banca.ServiceReference.GetUtilizatorByIbanResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ServiceReference\Banca.ServiceReference.GetValoareValutaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ServiceReference\Banca.ServiceReference.IsIBANinDataBaseResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ServiceReference\Banca.ServiceReference.ModificaUserResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference\Banca.ServiceReference.ObtineValuteExistenteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ServiceReference\Banca.ServiceReference.ToateValuteleResponse.datasource">
@@ -124,7 +130,13 @@
     <None Include="Connected Services\ServiceReference\Banca.ServiceReference.TranzactieResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ServiceReference\Banca.ServiceReference.UpdateValoareValutaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ServiceReference\Banca.ServiceReference.Utilizator.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference\Banca.ServiceReference.Valute.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ServiceReference\WebService.wsdl" />
